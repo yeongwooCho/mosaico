@@ -17,4 +17,5 @@ class MyColor {
   static const lightGrey = Color(0xFFF4F5F9);
   static const barrier = Color(0x111C1C1E);
   static const empty = Color(0x00ffffff);
+  static const shadow = Color(0x3f000000);
 }
