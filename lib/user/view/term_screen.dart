@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/user/view/term_detail_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class TermScreen extends StatelessWidget {
@@ -77,6 +79,7 @@ class _TermContainerState extends State<TermContainer> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8.0,
+                    horizontal: 8.0,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -199,62 +202,65 @@ class _CheckBox extends StatelessWidget {
       onTap: onTap,
       child: Container(
         color: MyColor.empty,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                isSelected
-                    ? PhosphorIcon(
-                        PhosphorIcons.checkSquare(PhosphorIconsStyle.fill),
-                        color: MyColor.primary,
-                        size: 24.0,
-                      )
-                    : PhosphorIcon(
-                        PhosphorIcons.square(),
-                        size: 24.0,
-                      ),
-                const SizedBox(width: 8.0),
-                Text(
-                  title,
-                  style: MyTextStyle.descriptionRegular,
-                ),
-                const SizedBox(width: 8.0),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1.0,
-                      color: isRequired ? MyColor.primary : MyColor.darkGrey,
-                    ),
-                    borderRadius: BorderRadius.circular(100.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  isSelected
+                      ? PhosphorIcon(
+                          PhosphorIcons.checkSquare(PhosphorIconsStyle.fill),
+                          color: MyColor.primary,
+                          size: 24.0,
+                        )
+                      : PhosphorIcon(
+                          PhosphorIcons.square(),
+                          size: 24.0,
+                        ),
+                  const SizedBox(width: 8.0),
+                  Text(
+                    title,
+                    style: MyTextStyle.descriptionRegular,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 6.0, vertical: 2.0),
-                    child: Text(
-                      isRequired ? '필수' : '선택',
-                      style: MyTextStyle.minimumRegular.copyWith(
-                        color:
-                            isRequired ? MyColor.primary : MyColor.darkGrey,
+                  const SizedBox(width: 8.0),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1.0,
+                        color: isRequired ? MyColor.primary : MyColor.darkGrey,
+                      ),
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6.0, vertical: 2.0),
+                      child: Text(
+                        isRequired ? '필수' : '선택',
+                        style: MyTextStyle.minimumRegular.copyWith(
+                          color:
+                              isRequired ? MyColor.primary : MyColor.darkGrey,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            IconButton(
-              onPressed: () {
-                // context.pushNamed(
-                //   TermDetailScreen.routeName,
-                //   pathParameters: {'id': index.toString()},
-                // );
-              },
-              iconSize: 24.0,
-              icon: PhosphorIcon(
-                PhosphorIcons.caretRight(),
+                ],
               ),
-            ),
-          ],
+              IconButton(
+                onPressed: () {
+                  context.pushNamed(
+                    TermDetailScreen.routeName,
+                    pathParameters: {'id': index.toString()},
+                  );
+                },
+                iconSize: 24.0,
+                icon: PhosphorIcon(
+                  PhosphorIcons.caretRight(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
