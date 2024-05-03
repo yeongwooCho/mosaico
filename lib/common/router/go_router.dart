@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/view/error_screen.dart';
 import 'package:mosaico/common/view/splash_screen.dart';
+import 'package:mosaico/user/view/certification_screen.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
 import 'package:mosaico/user/view/email_login_screen.dart';
+import 'package:mosaico/user/view/input_info_screen.dart';
 import 'package:mosaico/user/view/login_screen.dart';
 import 'package:mosaico/user/view/term_detail_screen.dart';
 import 'package:mosaico/user/view/term_screen.dart';
@@ -52,6 +54,18 @@ List<RouteBase> get routes => [
                     path: 'detail/:id',
                     name: TermDetailScreen.routeName,
                     builder: (context,state) => TermDetailScreen(),
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: 'certification',
+                name: CertificationScreen.routeName,
+                builder: (context, state) => CertificationScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'input_info',
+                    name: InputInfoScreen.routeName,
+                    builder: (context, state) => InputInfoScreen(),
                   ),
                 ],
               ),

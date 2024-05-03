@@ -5,6 +5,7 @@ import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/user/view/certification_screen.dart';
 import 'package:mosaico/user/view/term_detail_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -137,7 +138,7 @@ class _TermContainerState extends State<TermContainer> {
         PrimaryButton(
           onPressed: isUse && isPersonalInfo
               ? () {
-                  // context.goNamed(CertificationScreen.routeName);
+                  context.goNamed(CertificationScreen.routeName);
                 }
               : null,
           child: const Text('확인'),
