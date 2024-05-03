@@ -7,6 +7,7 @@ import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/user/view/term_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class EmailLoginScreen extends StatefulWidget {
@@ -135,7 +136,7 @@ class _BottomButtons extends StatelessWidget {
         renderButton(
           title: '  회원가입  ',
           onPressed: () {
-            // context.goNamed(TermScreen.routeName);
+            context.goNamed(TermScreen.routeName);
           },
         ),
         renderDivider(),

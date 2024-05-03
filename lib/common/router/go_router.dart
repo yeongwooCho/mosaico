@@ -5,6 +5,7 @@ import 'package:mosaico/common/view/splash_screen.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
 import 'package:mosaico/user/view/email_login_screen.dart';
 import 'package:mosaico/user/view/login_screen.dart';
+import 'package:mosaico/user/view/term_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -40,6 +41,13 @@ List<RouteBase> get routes => [
             path: 'email_login',
             name: EmailLoginScreen.routeName,
             builder: (context, state) => EmailLoginScreen(),
+            routes: [
+              GoRoute(
+                path: 'term',
+                name: TermScreen.routeName,
+                builder: (context,state) => TermScreen(),
+              ),
+            ],
           )
         ],
       ),
