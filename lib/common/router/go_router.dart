@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mosaico/ai/view/ai_screen.dart';
+import 'package:mosaico/category/view/category_screen.dart';
 import 'package:mosaico/common/view/completion_screen.dart';
 import 'package:mosaico/common/view/error_screen.dart';
+import 'package:mosaico/common/view/root_tab.dart';
 import 'package:mosaico/common/view/splash_screen.dart';
+import 'package:mosaico/event/view/event_screen.dart';
+import 'package:mosaico/friend/view/friend_screen.dart';
+import 'package:mosaico/profile/view/profile_screen.dart';
 import 'package:mosaico/user/view/certification_screen.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
 import 'package:mosaico/user/view/email_login_screen.dart';
@@ -77,6 +83,39 @@ List<RouteBase> get routes => [
               ),
             ],
           )
+        ],
+      ),
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return RootTab(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/friend',
+            name: FriendScreen.routeName,
+            builder: (context, state) => FriendScreen(),
+          ),
+          GoRoute(
+            path: '/event',
+            name: EventScreen.routeName,
+            builder: (context, state) => EventScreen(),
+          ),
+          GoRoute(
+            path: '/category',
+            name: CategoryScreen.routeName,
+            builder: (context, state) => CategoryScreen(),
+          ),
+          GoRoute(
+            path: '/profile',
+            name: ProfileScreen.routeName,
+            builder: (context, state) => ProfileScreen(),
+          ),
+          GoRoute(
+            path: '/ai',
+            name: AiScreen.routeName,
+            builder: (context, state) => AiScreen(),
+          ),
         ],
       ),
     ];

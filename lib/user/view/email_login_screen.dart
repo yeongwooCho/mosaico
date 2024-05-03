@@ -7,6 +7,7 @@ import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/event/view/event_screen.dart';
 import 'package:mosaico/user/view/term_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -67,7 +68,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                       setState(() {
                         isLoading = false;
                       });
-                      // context.goNamed(ProductScreen.routeName);
+                      context.goNamed(EventScreen.routeName);
                     },
                     child: const Text('로그인'),
                   ),

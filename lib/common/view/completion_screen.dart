@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/event/view/event_screen.dart';
 
 class CompletionScreen extends StatelessWidget {
   static String get routeName => 'completion';
@@ -28,7 +29,7 @@ class CompletionScreen extends StatelessWidget {
             ),
             PrimaryButton(
               onPressed: () {
-                // context.goNamed(ProductScreen.routeName);
+                context.goNamed(EventScreen.routeName);
               },
               child: const Text('홈으로 이동'),
             )
