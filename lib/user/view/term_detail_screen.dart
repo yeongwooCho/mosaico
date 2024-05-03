@@ -4,7 +4,7 @@ import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
-import 'package:mosaico/user/view/const/terms.dart';
+import 'package:mosaico/user/const/terms.dart';
 
 class TermDetailScreen extends StatelessWidget {
   static String get routeName => 'term_detail';
