@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mosaico/common/view/completion_screen.dart';
 import 'package:mosaico/common/view/error_screen.dart';
 import 'package:mosaico/common/view/splash_screen.dart';
 import 'package:mosaico/user/view/certification_screen.dart';
@@ -29,6 +30,11 @@ List<RouteBase> get routes => [
         path: '/splash',
         name: SplashScreen.routeName,
         builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        path: '/completion/:title',
+        name: CompletionScreen.routeName,
+        builder: (context, state) => CompletionScreen(),
       ),
       GoRoute(
         path: '/sns/:title',

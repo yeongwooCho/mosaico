@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mosaico/common/component/custom_ink_well_button.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/custom_text_form_field.dart';
 import 'package:mosaico/common/component/default_button.dart';
-import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
-import 'package:mosaico/common/utils/data_utils.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:mosaico/common/view/completion_screen.dart';
 
 class InputInfoScreen extends ConsumerStatefulWidget {
   static String get routeName => 'input_info';
@@ -44,7 +42,10 @@ class _InputInfoScreenState extends ConsumerState<InputInfoScreen> {
               isLoading = false;
             });
 
-            // context.goNamed(ProductScreen.routeName);
+            context.goNamed(
+              CompletionScreen.routeName,
+              pathParameters: {"title": "회원가입이\n정상적으로\n완료 되었습니다."},
+            );
           },
           child: const Text('확인'),
         ),
