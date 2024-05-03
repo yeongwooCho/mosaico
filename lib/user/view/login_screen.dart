@@ -5,6 +5,7 @@ import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
+import 'package:mosaico/user/view/email_login_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   static String get routeName => "login";
@@ -115,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 40.0),
                 TextButton(
                   onPressed: () {
-                    // context.goNamed(EmailLoginScreen.routeName);
+                    context.goNamed(EmailLoginScreen.routeName);
                   },
                   child: Text(
                     '이메일로 로그인',

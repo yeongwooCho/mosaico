@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/view/error_screen.dart';
 import 'package:mosaico/common/view/splash_screen.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
+import 'package:mosaico/user/view/email_login_screen.dart';
 import 'package:mosaico/user/view/login_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -34,5 +35,12 @@ List<RouteBase> get routes => [
         path: '/login',
         name: LoginScreen.routeName,
         builder: (context, state) => LoginScreen(),
+        routes: [
+          GoRoute(
+            path: 'email_login',
+            name: EmailLoginScreen.routeName,
+            builder: (context, state) => EmailLoginScreen(),
+          )
+        ],
       ),
     ];
