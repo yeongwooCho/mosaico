@@ -57,7 +57,7 @@ class _TermContainerState extends State<TermContainer> {
       children: [
         Column(
           children: [
-            GestureDetector(
+            InkWell(
               onTap: () {
                 setState(() {
                   isTotal = !isTotal;
@@ -104,7 +104,7 @@ class _TermContainerState extends State<TermContainer> {
               ),
             ),
             const SizedBox(height: 8.0),
-            Divider(),
+            const Divider(),
             const SizedBox(height: 8.0),
             _CheckBox(
               index: 0,
@@ -195,7 +195,7 @@ class _CheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         color: MyColor.empty,
