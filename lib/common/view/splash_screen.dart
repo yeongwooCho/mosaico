@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/user/view/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static String get routeName => 'splash';
@@ -27,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'asset/img/logo/logo.png',
+              ImagePath.logo,
               width: MediaQuery.of(context).size.width * 2 / 3,
             ),
           ],
@@ -39,6 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void delay() async {
     await Future.delayed(const Duration(seconds: 1));
 
-    // context.goNamed(LoginScreen.routeName);
+    context.goNamed(LoginScreen.routeName);
   }
 }
