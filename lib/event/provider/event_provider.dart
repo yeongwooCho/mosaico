@@ -35,6 +35,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '1',
@@ -46,6 +47,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: false,
       ),
       EventModel(
         id: '2',
@@ -57,6 +59,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '3',
@@ -68,6 +71,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '4',
@@ -79,6 +83,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '5',
@@ -90,6 +95,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '6',
@@ -101,6 +107,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '7',
@@ -112,6 +119,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
       EventModel(
         id: '8',
@@ -123,6 +131,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         rating: 4.9,
         participants: 12456,
         isLike: true,
+        isParticipation: true,
       ),
     ];
   }

@@ -18,6 +18,7 @@ class EventCard extends ConsumerWidget {
   final double rating;
   final int participants;
   final bool isLike;
+  final ParticipationStatus participationStatus;
 
   const EventCard({
     super.key,
@@ -30,6 +31,7 @@ class EventCard extends ConsumerWidget {
     required this.rating,
     required this.participants,
     required this.isLike,
+    required this.participationStatus,
   });
 
   factory EventCard.fromModel({
@@ -45,6 +47,7 @@ class EventCard extends ConsumerWidget {
       rating: model.rating,
       participants: model.participants,
       isLike: model.isLike,
+      participationStatus: model.participationStatus,
     );
   }
 
@@ -122,9 +125,8 @@ class EventCard extends ConsumerWidget {
                           endAt: endAt,
                           participants: participants,
                         ),
-                        ContainerButton(
-                          onPressed: () {},
-                          child: Text('참여완료'),
+                        renderButtonForParticipationStatus(
+                          participationStatus: participationStatus,
                         ),
                       ],
                     ),
@@ -136,6 +138,38 @@ class EventCard extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Widget renderButtonForParticipationStatus({
+    required ParticipationStatus participationStatus,
+  }) {
+    switch (participationStatus) {
+      case ParticipationStatus.expected:
+        return ContainerButton(
+          onPressed: null,
+          child: Text(participationStatus.label),
+        );
+      case ParticipationStatus.ready:
+        return SecondaryButton(
+          onPressed: () {},
+          child: Text(participationStatus.label),
+        );
+      case ParticipationStatus.done:
+        return ContainerButton(
+          onPressed: null,
+          child: Text(participationStatus.label),
+        );
+      case ParticipationStatus.expired:
+        return ContainerButton(
+          onPressed: null,
+          child: Text(participationStatus.label),
+        );
+      case ParticipationStatus.rating:
+        return SecondaryButton(
+          onPressed: () {},
+          child: Text(participationStatus.label),
+        );
+    }
   }
 }
 

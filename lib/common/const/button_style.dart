@@ -8,10 +8,10 @@ class MyButtonStyle {
     foregroundColor: MyColor.white,
     backgroundColor: MyColor.primary,
     disabledForegroundColor: MyColor.darkGrey,
-    disabledBackgroundColor: MyColor.lightGrey,
+    disabledBackgroundColor: MyColor.white,
     elevation: 0,
     padding: const EdgeInsets.symmetric(vertical: 12.0),
-    minimumSize: const Size(60, 48),
+    minimumSize: const Size(60, 40),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
     ),
@@ -22,10 +22,10 @@ class MyButtonStyle {
     foregroundColor: MyColor.primary,
     backgroundColor: MyColor.white,
     disabledForegroundColor: MyColor.darkGrey,
-    disabledBackgroundColor: MyColor.lightGrey,
+    disabledBackgroundColor: MyColor.white,
     elevation: 0,
     padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
-    minimumSize: const Size(60, 48),
+    minimumSize: const Size(60, 40),
     shape: RoundedRectangleBorder(
       side: const BorderSide(
         width: 1.0,
@@ -42,9 +42,11 @@ class MyButtonStyle {
   static ButtonStyle container = ElevatedButton.styleFrom(
     foregroundColor: MyColor.darkGrey,
     backgroundColor: MyColor.white,
+    disabledForegroundColor: MyColor.darkGrey,
+    disabledBackgroundColor: MyColor.white,
     elevation: 0,
-    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-    minimumSize: const Size(60, 48),
+    padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 12.0),
+    minimumSize: const Size(60, 40),
     shape: RoundedRectangleBorder(
       side: const BorderSide(
         width: 1.0,
