@@ -104,7 +104,7 @@ List<RouteBase> get routes => [
             routes: [
               GoRoute(
                 parentNavigatorKey: _rootNavigatorKey,
-                path: 'detail',
+                path: ':id',
                 name: EventDetailScreen.routeName,
                 builder: (context, state) => EventDetailScreen(),
               )

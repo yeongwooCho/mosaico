@@ -2,6 +2,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/event/model/event_model.dart';
 
+final eventDetailProvider = Provider.family<EventModel, String>((ref, id) {
+  final events = ref.watch(eventsProvider);
+
+  return events.where((element) => element.id == id).first;
+});
+
 final eventsProvider =
     StateNotifierProvider<EventStateNotifier, List<EventModel>>(
   (ref) => EventStateNotifier(),

@@ -38,16 +38,21 @@ class EventScreen extends ConsumerWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
+          final event = events[index];
+
           return GestureDetector(
             onTap: () {
-              context.goNamed(EventDetailScreen.routeName);
+              context.goNamed(
+                EventDetailScreen.routeName,
+                pathParameters: {'id': event.id},
+              );
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10.0,
                 horizontal: 16.0,
               ),
-              child: EventCard.fromModel(model: events[index]),
+              child: EventCard.fromModel(model: event),
             ),
           );
         },
