@@ -9,6 +9,8 @@ import 'package:mosaico/common/view/splash_screen.dart';
 import 'package:mosaico/event/view/event_detail_screen.dart';
 import 'package:mosaico/event/view/event_screen.dart';
 import 'package:mosaico/friend/view/friend_screen.dart';
+import 'package:mosaico/notification/view/notification_detail_screen.dart';
+import 'package:mosaico/notification/view/notification_screen.dart';
 import 'package:mosaico/profile/view/profile_screen.dart';
 import 'package:mosaico/user/view/certification_screen.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
@@ -127,6 +129,22 @@ List<RouteBase> get routes => [
             name: AiScreen.routeName,
             builder: (context, state) => AiScreen(),
           ),
+        ],
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/notification',
+        name: NotificationScreen.routeName,
+        builder: (_, state) => NotificationScreen(),
+        routes: [
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: ':id',
+            name: NotificationDetailScreen.routeName,
+            builder: (_, state) => NotificationDetailScreen(
+              id: state.pathParameters['id']!,
+            ),
+          )
         ],
       ),
     ];

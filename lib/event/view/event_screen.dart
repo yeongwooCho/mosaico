@@ -7,6 +7,7 @@ import 'package:mosaico/common/layout/default_layout.dart';
 import 'package:mosaico/event/component/event_card.dart';
 import 'package:mosaico/event/provider/event_provider.dart';
 import 'package:mosaico/event/view/event_detail_screen.dart';
+import 'package:mosaico/notification/view/notification_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class EventScreen extends ConsumerWidget {
@@ -26,7 +27,9 @@ class EventScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(NotificationScreen.routeName);
+              },
               icon: PhosphorIcon(
                 PhosphorIcons.bell(),
               ),
