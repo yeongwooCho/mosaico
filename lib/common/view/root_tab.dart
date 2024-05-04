@@ -95,10 +95,17 @@ class RootTab extends StatelessWidget {
             label: '내 정보',
           ),
           BottomNavigationBarItem(
+            activeIcon: Text(
+              'AI',
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
             icon: Text(
               'AI',
               style: TextStyle(
                 fontSize: 20.0,
+                color: MyColor.middleGrey,
               ),
             ),
             label: '제작',
