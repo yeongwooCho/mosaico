@@ -6,7 +6,7 @@ enum ParticipationStatus {
   // 진행 중인데 참여 했을 때
   done('참여완료'),
   // 끝났는데 참여 안 했을 때
-  expired('이벤트 종료'),
+  expired('종료'),
   // 끝났는데 참여 했을 때
   rating('후기 작성');
 
