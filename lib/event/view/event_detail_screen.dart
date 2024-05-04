@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hidable/hidable.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
@@ -31,23 +33,36 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final safeTopPadding = MediaQuery.of(context).padding.top;
+
     final event = ref.watch(eventDetailProvider(widget.id)) as EventDetailModel;
 
     return DefaultLayout(
-      appbar: const DefaultAppBar(title: '모자익 상세'),
-      bottomNavigationBar: Container(
-        color: MyColor.empty,
+      appbar: Hidable(
+        controller: controller,
+        preferredWidgetSize:
+            Size.fromHeight(DefaultAppBar.defaultAppBarHeight + safeTopPadding),
+        child: const DefaultAppBar(title: '모자익 상세'),
+      ),
+      bottomNavigationBar: Hidable(
+        controller: controller,
+        preferredWidgetSize: Size.fromHeight(78),
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 20.0, right: 24.0, left: 24.0),
-          child: Container(
-            color: MyColor.empty,
-            child: renderButtonForParticipationStatus(
-              participationStatus: event.participationStatus,
-            ),
+          padding: const EdgeInsets.only(
+              top: 8.0, bottom: 20.0, right: 24.0, left: 24.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: renderButtonForParticipationStatus(
+                  participationStatus: event.participationStatus,
+                ),
+              ),
+            ],
           ),
         ),
       ),
       child: CustomScrollView(
+        controller: controller,
         slivers: [
           renderEventCard(event: event),
           renderDescription(
