@@ -53,6 +53,9 @@ dependencies:
   flutter_riverpod: ^2.0.2
   uuid: ^4.2.2
 
+  # function
+  fl_chart: ^0.67.0
+
 
 
 dev_dependencies:
