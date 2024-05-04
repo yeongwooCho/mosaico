@@ -6,6 +6,7 @@ import 'package:mosaico/common/view/completion_screen.dart';
 import 'package:mosaico/common/view/error_screen.dart';
 import 'package:mosaico/common/view/root_tab.dart';
 import 'package:mosaico/common/view/splash_screen.dart';
+import 'package:mosaico/event/view/event_detail_screen.dart';
 import 'package:mosaico/event/view/event_screen.dart';
 import 'package:mosaico/friend/view/friend_screen.dart';
 import 'package:mosaico/profile/view/profile_screen.dart';
@@ -100,6 +101,14 @@ List<RouteBase> get routes => [
             path: '/event',
             name: EventScreen.routeName,
             builder: (context, state) => EventScreen(),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'detail',
+                name: EventDetailScreen.routeName,
+                builder: (context, state) => EventDetailScreen(),
+              )
+            ],
           ),
           GoRoute(
             path: '/category',
