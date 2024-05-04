@@ -11,7 +11,7 @@ class MyButtonStyle {
     disabledBackgroundColor: MyColor.white,
     elevation: 0,
     padding: const EdgeInsets.symmetric(vertical: 12.0),
-    minimumSize: const Size(60, 40),
+    minimumSize: const Size(60, 48),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
     ),
@@ -57,6 +57,6 @@ class MyButtonStyle {
     textStyle: MyTextStyle.bodyRegular.copyWith(
       height: 1.0,
     ),
-    alignment: AlignmentDirectional.centerStart,
+    alignment: AlignmentDirectional.center,
   );
 }
