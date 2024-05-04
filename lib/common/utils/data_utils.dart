@@ -8,6 +8,12 @@ class DataUtils {
     return '${datetime.year}.${datetime.month.toString().padLeft(2, '0')}.${datetime.day.toString().padLeft(2, '0')}';
   }
 
+  static String convertDateTimeToDateTimeString({
+    required DateTime datetime,
+  }) {
+    return '${datetime.year}.${datetime.month.toString().padLeft(2, '0')}.${datetime.day.toString().padLeft(2, '0')} ${datetime.hour.toString().padLeft(2, '0')}:${datetime.minute.toString().padLeft(2, '0')}';
+  }
+
   static String convertPriceToMoneyString({
     required int price,
   }) {
