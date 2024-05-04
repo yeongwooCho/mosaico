@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/ai/view/ai_screen.dart';
-import 'package:mosaico/category/view/category_screen.dart';
+import 'package:mosaico/category/util/show_category_modal_bottom_sheet.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
@@ -56,7 +56,7 @@ class RootTab extends StatelessWidget {
             case 1:
               context.goNamed(EventScreen.routeName);
             case 2:
-              context.goNamed(CategoryScreen.routeName);
+              showCategoryModalBottomSheet(context: context);
             case 3:
               context.goNamed(ProfileScreen.routeName);
             case 4:
