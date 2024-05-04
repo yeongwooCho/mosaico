@@ -39,6 +39,14 @@ class MyTextStyle {
     color: basicColor,
   );
 
+  static const bodyTitleMedium = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    letterSpacing: letterSpacing,
+    height: height,
+    color: basicColor,
+  );
+
   static const bodyTitleRegular = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w400,
