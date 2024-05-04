@@ -15,13 +15,17 @@ class EventScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       appbar: DefaultAppBar(
-        title: '로고',
-        centerTitle: false,
+        title: '',
+        leading: Image.asset(ImagePath.logo),
         action: [
-          IconButton(
-            onPressed: () {},
-            icon: PhosphorIcon(
-              PhosphorIcons.bell(),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              onPressed: () {},
+              icon: PhosphorIcon(
+                PhosphorIcons.bell(),
+              ),
+              iconSize: 32.0,
             ),
           ),
         ],

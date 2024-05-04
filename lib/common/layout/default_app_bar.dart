@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 
@@ -40,6 +41,7 @@ class _DefaultAppBarState extends State<DefaultAppBar> {
             )
           : widget.titleWidget,
       leading: widget.leading,
+      leadingWidth: 72.0,
       centerTitle: widget.centerTitle,
       actions: widget.action,
       elevation: widget.elevation ?? 0.0,
