@@ -106,7 +106,9 @@ List<RouteBase> get routes => [
                 parentNavigatorKey: _rootNavigatorKey,
                 path: ':id',
                 name: EventDetailScreen.routeName,
-                builder: (context, state) => EventDetailScreen(),
+                builder: (context, state) => EventDetailScreen(
+                  id: state.pathParameters['id']!,
+                ),
               )
             ],
           ),
