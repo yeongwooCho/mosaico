@@ -1,13 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/utils/data_utils.dart';
 import 'package:mosaico/event/model/event_model.dart';
+import 'package:mosaico/event/provider/event_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class EventCard extends StatelessWidget {
+class EventCard extends ConsumerWidget {
+  final String id;
   final String title;
   final String imagePath;
   final List<String> tags;
@@ -15,9 +17,11 @@ class EventCard extends StatelessWidget {
   final DateTime endAt;
   final double rating;
   final int participants;
+  final bool isLike;
 
   const EventCard({
     super.key,
+    required this.id,
     required this.title,
     required this.imagePath,
     required this.tags,
@@ -25,12 +29,14 @@ class EventCard extends StatelessWidget {
     required this.endAt,
     required this.rating,
     required this.participants,
+    required this.isLike,
   });
 
   factory EventCard.fromModel({
     required EventModel model,
   }) {
     return EventCard(
+      id: model.id,
       title: model.title,
       imagePath: model.imagePath,
       tags: model.tags,
@@ -38,11 +44,12 @@ class EventCard extends StatelessWidget {
       endAt: model.endAt,
       rating: model.rating,
       participants: model.participants,
+      isLike: model.isLike,
     );
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
         boxShadow: [
@@ -56,10 +63,41 @@ class EventCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
         child: Column(
           children: [
-            Image.asset(
-              imagePath,
-              fit: BoxFit.fill,
-              width: double.infinity,
+            Stack(
+              alignment: Alignment.topRight,
+              children: [
+                Image.asset(
+                  imagePath,
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                ),
+                InkWell(
+                  onTap: () {
+                    ref.read(eventsProvider.notifier).updateLike(id: id);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
+                        color: MyColor.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: isLike
+                            ? PhosphorIcon(
+                                PhosphorIcons.heart(PhosphorIconsStyle.fill),
+                                color: MyColor.primary,
+                              )
+                            : PhosphorIcon(
+                                PhosphorIcons.heart(),
+                                color: MyColor.darkGrey,
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Container(
               color: MyColor.white,
