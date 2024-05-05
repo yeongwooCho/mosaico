@@ -13,7 +13,7 @@ class UserStateNotifier extends StateNotifier<UserModel> {
             username: 'event0877',
             password: 'event0877',
             name: '송정원',
-            phone: '010-1234-1234',
+            phone: '01012341234',
             profileImage: ImagePath.user,
             keywords: [
               '패션',
@@ -22,6 +22,15 @@ class UserStateNotifier extends StateNotifier<UserModel> {
             ]));
 
   void updateKeywords({required List<String> newKeywords}) {
-    state = state.copyWith(keywords: newKeywords);
+    state = state.copyWith(
+      keywords: newKeywords,
+    );
+  }
+
+  void updateInfo({required String name, required String phone}) {
+    state = state.copyWith(
+      name: name,
+      phone: phone,
+    );
   }
 }
