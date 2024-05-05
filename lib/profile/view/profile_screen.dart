@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/profile/view/edit_profile_screen.dart';
 import 'package:mosaico/user/const/data.dart';
 import 'package:mosaico/user/model/user_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -23,7 +25,9 @@ class ProfileScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(EditProfileScreen.routeName);
+              },
               icon: PhosphorIcon(
                 PhosphorIcons.gear(),
                 size: 32.0,

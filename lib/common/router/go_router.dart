@@ -11,6 +11,7 @@ import 'package:mosaico/event/view/event_screen.dart';
 import 'package:mosaico/friend/view/friend_screen.dart';
 import 'package:mosaico/notification/view/notification_detail_screen.dart';
 import 'package:mosaico/notification/view/notification_screen.dart';
+import 'package:mosaico/profile/view/edit_profile_screen.dart';
 import 'package:mosaico/profile/view/profile_screen.dart';
 import 'package:mosaico/user/view/certification_screen.dart';
 import 'package:mosaico/user/view/custom_sns_screen.dart';
@@ -118,6 +119,14 @@ List<RouteBase> get routes => [
             path: '/profile',
             name: ProfileScreen.routeName,
             builder: (context, state) => ProfileScreen(),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'edit',
+                name: EditProfileScreen.routeName,
+                builder: (context, state) => EditProfileScreen(),
+              )
+            ],
           ),
           GoRoute(
             path: '/ai',
