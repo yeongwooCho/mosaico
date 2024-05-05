@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/ai/view/ai_screen.dart';
-import 'package:mosaico/category/util/show_category_modal_bottom_sheet.dart';
+import 'package:mosaico/common/component/show/show_category_modal_bottom_sheet.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
