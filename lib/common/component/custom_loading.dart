@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mosaico/common/const/colors.dart';
+import 'package:mosaico/common/const/image_path.dart';
 
 class CustomLoadingScreen extends StatelessWidget {
   const CustomLoadingScreen({super.key});
@@ -11,7 +12,7 @@ class CustomLoadingScreen extends StatelessWidget {
       body: Center(
         child: Center(
           child: Image.asset(
-            'asset/img/logo/logo.png',
+            ImagePath.logo,
             width: 160.0,
             height: 160.0,
           ),

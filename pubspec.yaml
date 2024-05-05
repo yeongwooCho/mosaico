@@ -56,6 +56,8 @@ dependencies:
   # function
   fl_chart: ^0.67.0
 
+  webview_flutter: ^4.7.0
+
 
 
 dev_dependencies:
