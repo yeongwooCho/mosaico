@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/const/colors.dart';
@@ -7,8 +9,8 @@ import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
 import 'package:mosaico/profile/view/edit_profile_screen.dart';
-import 'package:mosaico/user/const/data.dart';
 import 'package:mosaico/user/model/user_model.dart';
+import 'package:mosaico/user/provider/user_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -18,6 +20,8 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider);
+
     return DefaultLayout(
       appbar: DefaultAppBar(
         title: '내 정보',
@@ -41,7 +45,7 @@ class ProfileScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 20.0),
-            renderProfileTitle(user: userMe),
+            renderProfileTitle(user: user),
             Padding(
               padding: const EdgeInsets.only(top: 40.0),
               child: Container(
@@ -86,6 +90,7 @@ class ProfileScreen extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
             ImagePath.user,
@@ -101,37 +106,39 @@ class ProfileScreen extends ConsumerWidget {
                 style: MyTextStyle.bigTitleRegular,
               ),
               const SizedBox(height: 8.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
                     '관심 키워드',
                     style: MyTextStyle.bodyRegular,
                   ),
-                  const SizedBox(width: 12.0),
-                  ...user.keywords.map(
-                    (e) => Padding(
-                      padding: const EdgeInsets.only(right: 4.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(width: 1.0, color: MyColor.primary),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 2.0,
+                  const SizedBox(height: 4.0),
+                  Wrap(
+                    spacing: 4.0,
+                    children: [
+                      ...user.keywords.map(
+                        (e) => Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 1.0, color: MyColor.primary),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          child: Text(
-                            e,
-                            style: MyTextStyle.minimumRegular.copyWith(
-                              color: MyColor.primary,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                              vertical: 2.0,
+                            ),
+                            child: Text(
+                              e,
+                              style: MyTextStyle.minimumRegular.copyWith(
+                                color: MyColor.primary,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
