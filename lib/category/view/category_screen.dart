@@ -42,7 +42,9 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
             element.participationStatus == ParticipationStatus.expected)
         .toList();
 
-    renderEvents = readyEvents;
+    if (renderEvents.isEmpty) {
+      renderEvents = readyEvents;
+    }
 
     return DefaultLayout(
       appbar: DefaultAppBar(title: '${widget.title} 조회결과'),
