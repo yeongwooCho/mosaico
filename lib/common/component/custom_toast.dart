@@ -2,28 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 void showCustomToast(
   context, {
   required String msg,
   Duration? toastDuration,
-  Color backgroundColor = MyColor.text,
-  Color foregroundColor = MyColor.white,
+  Color backgroundColor = Colors.green,
+  Color foregroundColor = MyColor.text,
 }) {
   final fToast = FToast();
   fToast.init(context);
   Widget toast = Container(
+    height: double.infinity,
+    width: double.infinity,
     padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8.0),
-      color: backgroundColor.withOpacity(0.8),
-    ),
-    child: Text(
-      msg,
-      style: MyTextStyle.bodyBold.copyWith(
-        color: foregroundColor,
+    color: MyColor.barrier.withOpacity(0.1),
+    child: Center(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.0),
+          color: MyColor.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              PhosphorIcon(
+                PhosphorIcons.checkCircle(),
+                size: 32.0,
+                color: MyColor.text,
+              ),
+              const SizedBox(width: 12.0),
+              Text(
+                msg,
+                style: MyTextStyle.bodyTitleMedium.copyWith(
+                  color: foregroundColor,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
       ),
-      textAlign: TextAlign.center,
     ),
   );
 
