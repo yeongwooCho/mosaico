@@ -17,4 +17,24 @@ class UserModel {
     required this.profileImage,
     required this.keywords,
   });
+
+  UserModel copyWith({
+    String? id,
+    String? username,
+    String? password,
+    String? name,
+    String? phone,
+    String? profileImage,
+    List<String>? keywords,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      username: username ?? this.username,
+      password: password ?? this.password,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      profileImage: profileImage ?? this.profileImage,
+      keywords: keywords ?? this.keywords,
+    );
+  }
 }
