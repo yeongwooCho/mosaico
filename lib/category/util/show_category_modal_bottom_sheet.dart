@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/category/component/category_card.dart';
 import 'package:mosaico/category/provider/category_provider.dart';
+import 'package:mosaico/category/view/category_screen.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -76,14 +77,22 @@ class CategoryModalBottomSheet extends ConsumerWidget {
         ),
         Container(
           color: MyColor.white,
-          child: const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 24.0,
-              vertical: 16.0,
-            ),
-            child: Text(
-              '전체보기',
-              style: MyTextStyle.bodyTitleMedium,
+          child: InkWell(
+            onTap: () {
+              context.pushNamed(
+                CategoryScreen.routeName,
+                pathParameters: {'title': '전체보기'},
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 16.0,
+              ),
+              child: Text(
+                '전체보기',
+                style: MyTextStyle.bodyTitleMedium,
+              ),
             ),
           ),
         ),

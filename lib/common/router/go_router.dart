@@ -115,11 +115,6 @@ List<RouteBase> get routes => [
             ],
           ),
           GoRoute(
-            path: '/category',
-            name: CategoryScreen.routeName,
-            builder: (context, state) => CategoryScreen(),
-          ),
-          GoRoute(
             path: '/profile',
             name: ProfileScreen.routeName,
             builder: (context, state) => ProfileScreen(),
@@ -130,6 +125,16 @@ List<RouteBase> get routes => [
             builder: (context, state) => AiScreen(),
           ),
         ],
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/category/:title',
+        name: CategoryScreen.routeName,
+        builder: (context, state) {
+          final String title = state.pathParameters['title'] ?? '';
+
+          return CategoryScreen(title: title);
+        },
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mosaico/category/model/category_model.dart';
+import 'package:mosaico/category/view/category_screen.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -25,8 +27,9 @@ class _CategoryCardState extends State<CategoryCard> {
     final double fullWidth = MediaQuery.of(context).size.width;
 
     // Container height
-    final values = widget.category.values.length;
-    final int phase = values % 2 == 0 ? values ~/ 2 : values ~/ 2 + 1;
+    final values = widget.category.values;
+    final int phase = values.length % 2 == 0 ? values.length ~/ 2 : values
+        .length ~/ 2 + 1;
     final double containerHeight = (phase * 48) + ((phase - 1) * 8) + (16 * 2);
 
     return Column(
@@ -82,22 +85,31 @@ class _CategoryCardState extends State<CategoryCard> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: List.generate(
-                isVisible ? widget.category.values.length : 0,
-                (index) => Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1.0,
-                      color: MyColor.text,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  width: (fullWidth - 48 - 8) / 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: Center(
-                      child: Text(
-                        widget.category.values[index],
-                        style: MyTextStyle.descriptionRegular,
+                isVisible ? values.length : 0,
+                    (index) =>
+                    InkWell(
+                      onTap: () {
+                        context.pushNamed(
+                          CategoryScreen.routeName,
+                          pathParameters: {'title': values[index]},
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1.0,
+                            color: MyColor.text,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        width: (fullWidth - 48 - 8) / 2,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0),
+                          child: Center(
+                            child: Text(
+                              values[index],
+                              style: MyTextStyle.descriptionRegular,
+                            ),
                       ),
                     ),
                   ),
