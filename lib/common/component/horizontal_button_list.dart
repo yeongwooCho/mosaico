@@ -20,13 +20,6 @@ class _HorizontalButtonListState extends State<HorizontalButtonList> {
   HorizontalButtonModel? selectedButton;
 
   @override
-  void initState() {
-    super.initState();
-
-    widget.buttons[widget.initialSelectedIndex].onTap();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40.0,
