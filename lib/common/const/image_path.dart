@@ -16,4 +16,7 @@ class ImagePath {
 
   /// event
   static const image = "asset/img/event/1.png";
+
+  /// user
+  static const user = "asset/img/user/user.png";
 }
