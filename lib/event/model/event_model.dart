@@ -1,3 +1,5 @@
+import 'package:mosaico/category/model/category_model.dart';
+
 enum ParticipationStatus {
   // 시작 일이 되지 않았을 때
   expected('오픈예정'),
@@ -53,6 +55,7 @@ class EventModel {
   final int participants;
   final bool isParticipation;
   final bool isLike;
+  final String category;
   late ParticipationStatus participationStatus;
 
   EventModel({
@@ -66,6 +69,7 @@ class EventModel {
     required this.participants,
     required this.isParticipation,
     required this.isLike,
+    required this.category,
   }) {
     participationStatus = ParticipationStatus.getParticipationStatus(
       startAt: startAt,
@@ -85,6 +89,7 @@ class EventModel {
     int? participants,
     bool? isParticipation,
     bool? isLike,
+    String? category,
   }) {
     return EventModel(
       id: id ?? this.id,
@@ -97,6 +102,7 @@ class EventModel {
       participants: participants ?? this.participants,
       isParticipation: isParticipation ?? this.isParticipation,
       isLike: isLike ?? this.isLike,
+      category: category ?? this.category,
     );
   }
 }

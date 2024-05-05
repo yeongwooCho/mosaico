@@ -18,6 +18,7 @@ class EventDetailModel extends EventModel {
     required super.participants,
     required super.isParticipation,
     required super.isLike,
+    required super.category,
     required this.detail,
     required this.condition,
     required this.graphData,
