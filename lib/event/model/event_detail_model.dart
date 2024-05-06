@@ -5,7 +5,6 @@ class EventDetailModel extends EventModel {
   final String detail;
   final String condition;
   final List<int> graphData;
-  final List<RatingModel> ratings;
 
   EventDetailModel({
     required super.id,
@@ -14,7 +13,8 @@ class EventDetailModel extends EventModel {
     required super.tags,
     required super.startAt,
     required super.endAt,
-    required super.rating,
+    required super.ratings,
+    required super.totalRatingPoint,
     required super.participants,
     required super.isParticipation,
     required super.isLike,
@@ -22,6 +22,5 @@ class EventDetailModel extends EventModel {
     required this.detail,
     required this.condition,
     required this.graphData,
-    required this.ratings,
   });
 }

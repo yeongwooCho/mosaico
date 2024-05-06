@@ -1,4 +1,4 @@
-import 'package:mosaico/category/model/category_model.dart';
+import 'package:mosaico/event/model/rating_model.dart';
 
 enum ParticipationStatus {
   // 시작 일이 되지 않았을 때
@@ -10,7 +10,9 @@ enum ParticipationStatus {
   // 끝났는데 참여 안 했을 때
   expired('종료'),
   // 끝났는데 참여 했을 때
-  rating('후기 작성');
+  rating('후기 작성'),
+  // 끝났고 참여 했고 후기까지 작성
+  ratingDone('후기 작성 완료');
 
   const ParticipationStatus(this.label);
 
@@ -20,6 +22,7 @@ enum ParticipationStatus {
     required DateTime startAt,
     required DateTime endAt,
     required bool isParticipation,
+    required bool isRatingDone,
   }) {
     final now = DateTime.now();
     final nowDate = DateTime(now.year, now.month, now.day);
@@ -38,6 +41,11 @@ enum ParticipationStatus {
         now.isAfter(endAt) &&
         !isParticipation) {
       return ParticipationStatus.expired;
+    } else if (nowDate.isAfter(startAt) &&
+        now.isAfter(endAt) &&
+        isParticipation &&
+        isRatingDone) {
+      return ParticipationStatus.ratingDone;
     } else {
       return ParticipationStatus.rating;
     }
@@ -51,7 +59,8 @@ class EventModel {
   final List<String> tags;
   final DateTime startAt;
   final DateTime endAt;
-  final double rating;
+  final List<RatingModel> ratings;
+  final double totalRatingPoint;
   final int participants;
   final bool isParticipation;
   final bool isLike;
@@ -65,7 +74,8 @@ class EventModel {
     required this.tags,
     required this.startAt,
     required this.endAt,
-    required this.rating,
+    required this.ratings,
+    required this.totalRatingPoint,
     required this.participants,
     required this.isParticipation,
     required this.isLike,
@@ -75,6 +85,7 @@ class EventModel {
       startAt: startAt,
       endAt: endAt,
       isParticipation: isParticipation,
+      isRatingDone: ratings.isNotEmpty,
     );
   }
 
@@ -85,7 +96,8 @@ class EventModel {
     List<String>? tags,
     DateTime? startAt,
     DateTime? endAt,
-    double? rating,
+    List<RatingModel>? ratings,
+    double? totalRatingPoint,
     int? participants,
     bool? isParticipation,
     bool? isLike,
@@ -98,7 +110,8 @@ class EventModel {
       tags: tags ?? this.tags,
       startAt: startAt ?? this.startAt,
       endAt: endAt ?? this.endAt,
-      rating: rating ?? this.rating,
+      ratings: ratings ?? this.ratings,
+      totalRatingPoint: totalRatingPoint ?? this.totalRatingPoint,
       participants: participants ?? this.participants,
       isParticipation: isParticipation ?? this.isParticipation,
       isLike: isLike ?? this.isLike,

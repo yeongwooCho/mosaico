@@ -40,5 +40,10 @@ Widget renderButtonForParticipationStatus({
         onPressed: () {},
         child: Text(participationStatus.label),
       );
+    case ParticipationStatus.ratingDone:
+      return ContainerButton(
+        onPressed: null,
+        child: Text(participationStatus.label),
+      );
   }
 }

@@ -44,7 +44,7 @@ class EventCard extends ConsumerWidget {
       tags: model.tags,
       startAt: model.startAt,
       endAt: model.endAt,
-      rating: model.rating,
+      rating: model.totalRatingPoint,
       participants: model.participants,
       isLike: model.isLike,
       participationStatus: model.participationStatus,
