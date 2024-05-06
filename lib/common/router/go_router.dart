@@ -7,6 +7,8 @@ import 'package:mosaico/common/view/error_screen.dart';
 import 'package:mosaico/common/view/root_tab.dart';
 import 'package:mosaico/common/view/splash_screen.dart';
 import 'package:mosaico/event/view/event_detail_screen.dart';
+import 'package:mosaico/event/view/event_of_like_screen.dart';
+import 'package:mosaico/event/view/event_of_participation_screen.dart';
 import 'package:mosaico/event/view/event_screen.dart';
 import 'package:mosaico/friend/view/friend_screen.dart';
 import 'package:mosaico/notification/view/notification_detail_screen.dart';
@@ -125,7 +127,19 @@ List<RouteBase> get routes => [
                 path: 'edit',
                 name: EditProfileScreen.routeName,
                 builder: (context, state) => EditProfileScreen(),
-              )
+              ),
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'participation',
+                name: EventOfParticipationScreen.routeName,
+                builder: (context, state) => EventOfParticipationScreen(),
+              ),
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'like',
+                name: EventOfLikeScreen.routeName,
+                builder: (context, state) => EventOfLikeScreen(),
+              ),
             ],
           ),
           GoRoute(

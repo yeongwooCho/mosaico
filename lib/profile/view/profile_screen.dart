@@ -13,6 +13,8 @@ import 'package:mosaico/event/component/event_mini_card.dart';
 import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/provider/event_provider.dart';
 import 'package:mosaico/event/view/event_detail_screen.dart';
+import 'package:mosaico/event/view/event_of_like_screen.dart';
+import 'package:mosaico/event/view/event_of_participation_screen.dart';
 import 'package:mosaico/profile/view/edit_profile_screen.dart';
 import 'package:mosaico/user/model/user_model.dart';
 import 'package:mosaico/user/provider/user_provider.dart';
@@ -223,7 +225,9 @@ class _ProfileEventsLists extends ConsumerWidget {
             title: '내가 지원한 이벤트',
             rightButton: SeeMoreButton(
               title: '더보기',
-              onTap: () {},
+              onTap: () {
+                context.goNamed(EventOfParticipationScreen.routeName);
+              },
             ),
           ),
           eventsOfParticipation.isNotEmpty
@@ -234,7 +238,9 @@ class _ProfileEventsLists extends ConsumerWidget {
             title: '구독(찜)',
             rightButton: SeeMoreButton(
               title: '더보기',
-              onTap: () {},
+              onTap: () {
+                context.goNamed(EventOfLikeScreen.routeName);
+              },
             ),
           ),
           eventsOfLike.isNotEmpty
