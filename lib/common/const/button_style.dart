@@ -8,7 +8,7 @@ class MyButtonStyle {
     foregroundColor: MyColor.white,
     backgroundColor: MyColor.primary,
     disabledForegroundColor: MyColor.darkGrey,
-    disabledBackgroundColor: MyColor.white,
+    disabledBackgroundColor: MyColor.lightGrey,
     elevation: 0,
     padding: const EdgeInsets.symmetric(vertical: 12.0),
     minimumSize: const Size(60, 48),
