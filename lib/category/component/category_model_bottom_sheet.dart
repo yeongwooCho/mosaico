@@ -8,20 +8,6 @@ import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-void showCategoryModalBottomSheet({required BuildContext context}) {
-  showModalBottomSheet(
-    useSafeArea: true,
-    isDismissible: true,
-    isScrollControlled: true,
-    context: context,
-    barrierColor: MyColor.barrier,
-    backgroundColor: MyColor.empty,
-    builder: (_) {
-      return const CategoryModalBottomSheet();
-    },
-  );
-}
-
 class CategoryModalBottomSheet extends ConsumerWidget {
   const CategoryModalBottomSheet({super.key});
 
