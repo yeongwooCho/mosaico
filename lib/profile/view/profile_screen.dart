@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mosaico/common/component/show/show_component_modal_bottom_sheet.dart';
 import 'package:mosaico/common/component/show/show_cupertino_alert.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/image_path.dart';
@@ -67,7 +68,9 @@ class ProfileScreen extends ConsumerWidget {
                 size: 28.0,
               ),
               title: '고객센터',
-              onTap: () {},
+              onTap: () {
+                showCustomerCenterModalBottomSheet(context: context);
+              },
             ),
             renderIconAndTextButton(
               icon: PhosphorIcon(
