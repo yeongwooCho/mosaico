@@ -18,7 +18,6 @@ class EventCard extends ConsumerWidget {
   final double rating;
   final int participants;
   final bool isLike;
-  final ParticipationStatus participationStatus;
   final bool isButton;
 
   const EventCard({
@@ -32,7 +31,6 @@ class EventCard extends ConsumerWidget {
     required this.rating,
     required this.participants,
     required this.isLike,
-    required this.participationStatus,
     this.isButton = true,
   });
 
@@ -50,13 +48,14 @@ class EventCard extends ConsumerWidget {
       rating: model.totalRatingPoint,
       participants: model.participants,
       isLike: model.isLike,
-      participationStatus: model.participationStatus,
       isButton: isButton ?? true,
     );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final event = ref.watch(eventDetailProvider(id));
+
     return Container(
       decoration: const BoxDecoration(
         boxShadow: [
@@ -131,10 +130,9 @@ class EventCard extends ConsumerWidget {
                         ),
                         if (isButton)
                           renderButtonForParticipationStatus(
-                          context: context,
-                          participationStatus: participationStatus,
-                          eventId: id,
-                        ),
+                            context: context,
+                            event: event,
+                          ),
                       ],
                     ),
                   ],

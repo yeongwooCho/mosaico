@@ -55,6 +55,18 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
     }).toList();
   }
 
+  void addRating({
+    required String eventId,
+    required RatingModel rating,
+  }) {
+    state = state.map((e) {
+      if (e.id == eventId) {
+        return e.copyWith(ratings: [...e.ratings, rating]);
+      }
+      return e;
+    }).toList();
+  }
+
   List<EventModel> getItems() {
     return [
       EventDetailModel(
@@ -289,7 +301,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
       ),
       EventModel(
         id: '12',
-        title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
+        title: '1234',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
         startAt: DateTime(2024, 4, 22),
@@ -303,7 +315,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
       ),
       EventModel(
         id: '13',
-        title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
+        title: '2345',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
         startAt: DateTime(2024, 4, 22),

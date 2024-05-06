@@ -50,6 +50,40 @@ enum ParticipationStatus {
       return ParticipationStatus.rating;
     }
   }
+
+  static ParticipationStatus getParticipationStatusFromEvent({
+    required EventModel event,
+  }) {
+    final now = DateTime.now();
+    final nowDate = DateTime(now.year, now.month, now.day);
+    final startAt = event.startAt;
+    final endAt = event.endAt;
+    final isParticipation = event.isParticipation;
+    final isRatingDone = event.ratings.isNotEmpty;
+
+    if (nowDate.isBefore(startAt) && now.isBefore(endAt)) {
+      return ParticipationStatus.expected;
+    } else if (nowDate.isAfter(startAt) &&
+        now.isBefore(endAt) &&
+        !isParticipation) {
+      return ParticipationStatus.ready;
+    } else if (nowDate.isAfter(startAt) &&
+        now.isBefore(endAt) &&
+        isParticipation) {
+      return ParticipationStatus.done;
+    } else if (nowDate.isAfter(startAt) &&
+        now.isAfter(endAt) &&
+        !isParticipation) {
+      return ParticipationStatus.expired;
+    } else if (nowDate.isAfter(startAt) &&
+        now.isAfter(endAt) &&
+        isParticipation &&
+        isRatingDone) {
+      return ParticipationStatus.ratingDone;
+    } else {
+      return ParticipationStatus.rating;
+    }
+  }
 }
 
 class EventModel {
@@ -65,7 +99,6 @@ class EventModel {
   final bool isParticipation;
   final bool isLike;
   final String category;
-  late ParticipationStatus participationStatus;
 
   EventModel({
     required this.id,
@@ -80,14 +113,7 @@ class EventModel {
     required this.isParticipation,
     required this.isLike,
     required this.category,
-  }) {
-    participationStatus = ParticipationStatus.getParticipationStatus(
-      startAt: startAt,
-      endAt: endAt,
-      isParticipation: isParticipation,
-      isRatingDone: ratings.isNotEmpty,
-    );
-  }
+  });
 
   EventModel copyWith({
     String? id,

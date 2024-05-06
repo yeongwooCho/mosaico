@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/custom_text_form_field.dart';
 import 'package:mosaico/common/component/default_button.dart';
+import 'package:mosaico/common/component/show/show_custom_toast.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/common/utils/data_utils.dart';
 import 'package:mosaico/event/component/event_card.dart';
+import 'package:mosaico/event/model/rating_model.dart';
 import 'package:mosaico/event/provider/event_provider.dart';
+import 'package:mosaico/event/view/event_screen.dart';
+import 'package:mosaico/user/provider/user_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class EventRatingScreen extends ConsumerStatefulWidget {
@@ -26,9 +32,11 @@ class EventRatingScreen extends ConsumerStatefulWidget {
 
 class _EventRatingScreenState extends ConsumerState<EventRatingScreen> {
   int ratingPoint = 0;
+  String content = '';
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(userProvider);
     final event = ref.watch(eventDetailProvider(widget.id));
 
     return DefaultLayout(
@@ -61,7 +69,13 @@ class _EventRatingScreenState extends ConsumerState<EventRatingScreen> {
               ),
               const SizedBox(height: 8.0),
               CustomTextFormField(
-                onChanged: (String? value) {},
+                onChanged: (String? value) {
+                  if (value == null) {
+                    content = '';
+                  } else {
+                    content = value;
+                  }
+                },
                 onSaved: (String? value) {},
                 validator: (String? value) {
                   return null;
@@ -108,8 +122,24 @@ class _EventRatingScreenState extends ConsumerState<EventRatingScreen> {
               ),
               const SizedBox(height: 40.0),
               PrimaryButton(
-                onPressed: () {},
-                child: Text('작성 완료'),
+                onPressed: () {
+                  final id = DataUtils.getUuid();
+                  final rating = RatingModel(
+                    id: id,
+                    user: user,
+                    score: ratingPoint,
+                    content: content,
+                  );
+
+                  ref.read(eventsProvider.notifier).addRating(
+                        eventId: event.id,
+                        rating: rating,
+                      );
+
+                  showCustomToast(context, msg: '등록이 완료되었습니다.');
+                  context.goNamed(EventScreen.routeName);
+                },
+                child: const Text('작성 완료'),
               ),
             ],
           ),

@@ -32,15 +32,17 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     final events = ref.watch(eventsProvider);
-    readyEvents = events
-        .where((element) =>
-            element.participationStatus == ParticipationStatus.ready ||
-            element.participationStatus == ParticipationStatus.done)
-        .toList();
-    expectedEvents = events
-        .where((element) =>
-            element.participationStatus == ParticipationStatus.expected)
-        .toList();
+    readyEvents = events.where((element) {
+      final status =
+          ParticipationStatus.getParticipationStatusFromEvent(event: element);
+      return status == ParticipationStatus.ready ||
+          status == ParticipationStatus.done;
+    }).toList();
+    expectedEvents = events.where((element) {
+      final status =
+          ParticipationStatus.getParticipationStatusFromEvent(event: element);
+      return status == ParticipationStatus.expected;
+    }).toList();
 
     if (renderEvents.isEmpty) {
       renderEvents = readyEvents;

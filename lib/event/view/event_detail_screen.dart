@@ -55,8 +55,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
               Expanded(
                 child: renderButtonForParticipationStatus(
                   context: context,
-                  participationStatus: event.participationStatus,
-                  eventId: event.id,
+                  event: event,
                 ),
               ),
             ],
