@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hidable/hidable.dart';
+import 'package:mosaico/common/component/show/show_component_modal_bottom_sheet.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
@@ -201,7 +201,15 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 final rating = ratings[index];
-                return RatingCard.fromModel(rating: rating);
+                return InkWell(
+                  onTap: () {
+                    showRatingModalBottomSheet(
+                      context: context,
+                      rating: rating,
+                    );
+                  },
+                  child: RatingCard.fromModel(rating: rating),
+                );
               },
               itemCount: ratings.length,
               separatorBuilder: (_, index) {
