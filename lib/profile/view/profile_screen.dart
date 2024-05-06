@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mosaico/common/component/see_more_button.dart';
 import 'package:mosaico/common/component/show/show_component_modal_bottom_sheet.dart';
 import 'package:mosaico/common/component/show/show_cupertino_alert.dart';
 import 'package:mosaico/common/const/colors.dart';
@@ -8,6 +9,10 @@ import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/event/component/event_mini_card.dart';
+import 'package:mosaico/event/model/event_model.dart';
+import 'package:mosaico/event/provider/event_provider.dart';
+import 'package:mosaico/event/view/event_detail_screen.dart';
 import 'package:mosaico/profile/view/edit_profile_screen.dart';
 import 'package:mosaico/user/model/user_model.dart';
 import 'package:mosaico/user/provider/user_provider.dart';
@@ -54,7 +59,7 @@ class ProfileScreen extends ConsumerWidget {
                 color: MyColor.lightGrey,
               ),
             ),
-            const Placeholder(),
+            _ProfileEventsLists(user: user),
             Padding(
               padding: const EdgeInsets.only(bottom: 20.0),
               child: Container(
@@ -188,6 +193,139 @@ class ProfileScreen extends ConsumerWidget {
                 style: MyTextStyle.bodyTitleMedium,
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileEventsLists extends ConsumerWidget {
+  final UserModel user;
+
+  const _ProfileEventsLists({
+    super.key,
+    required this.user,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final events = ref.watch(eventsProvider);
+
+    final isParticipationEvents =
+        events.where((element) => element.isParticipation).toList();
+    final isLikeEvents = events.where((element) => element.isLike).toList();
+    final isSeeEvents = user.seeList;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _renderTitle(
+            title: '내가 지원한 이벤트',
+            rightButton: SeeMoreButton(
+              title: '더보기',
+              onTap: () {},
+            ),
+          ),
+          isParticipationEvents.isNotEmpty
+              ? _renderHorizontalList(events: isParticipationEvents)
+              : _renderEmptyContainer(),
+          const SizedBox(height: 40.0),
+          _renderTitle(
+            title: '구독(찜)',
+            rightButton: SeeMoreButton(
+              title: '더보기',
+              onTap: () {},
+            ),
+          ),
+          isLikeEvents.isNotEmpty
+              ? _renderHorizontalList(events: isLikeEvents)
+              : _renderEmptyContainer(),
+          const SizedBox(height: 40.0),
+          _renderTitle(
+            title: '최근 본 이벤트',
+            rightButton: const SizedBox(
+              height: 1.0,
+              width: 1.0,
+            ),
+          ),
+          isSeeEvents.isNotEmpty
+              ? _renderHorizontalList(events: isSeeEvents)
+              : _renderEmptyContainer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderHorizontalList({
+    required List<EventModel> events,
+  }) {
+    return SizedBox(
+      height: 200.0,
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          final event = events[index];
+
+          return InkWell(
+            onTap: () {
+              context.pushNamed(
+                EventDetailScreen.routeName,
+                pathParameters: {'id': event.id},
+              );
+            },
+            child: EventMiniCard.fromModel(model: events[index]),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Container(
+            width: 8.0,
+            color: MyColor.empty,
+          );
+        },
+        itemCount: events.length,
+      ),
+    );
+  }
+
+  Widget _renderTitle({
+    required String title,
+    required Widget rightButton,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: MyTextStyle.bodyTitleMedium,
+          ),
+          rightButton,
+        ],
+      ),
+    );
+  }
+
+  Widget _renderEmptyContainer() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+      child: Container(
+        height: 100.0,
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1.0,
+            color: MyColor.middleGrey,
+          ),
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Center(
+          child: Text(
+            '이벤트가 존재하지 않습니다.',
+            style: MyTextStyle.bodyRegular.copyWith(color: MyColor.darkGrey),
           ),
         ),
       ),
