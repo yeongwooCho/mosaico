@@ -7,6 +7,7 @@ import 'package:mosaico/event/view/participation_certification_screen.dart';
 Widget renderButtonForParticipationStatus({
   required BuildContext context,
   required ParticipationStatus participationStatus,
+  required String eventId,
 }) {
   switch (participationStatus) {
     case ParticipationStatus.expected:
@@ -17,7 +18,10 @@ Widget renderButtonForParticipationStatus({
     case ParticipationStatus.ready:
       return SecondaryButton(
         onPressed: () {
-          context.pushNamed(ParticipationCertificationScreen.routeName);
+          context.pushNamed(ParticipationCertificationScreen.routeName,
+              pathParameters: {
+                'id': eventId,
+              });
         },
         child: Text(participationStatus.label),
       );

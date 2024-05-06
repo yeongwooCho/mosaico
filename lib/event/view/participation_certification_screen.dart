@@ -15,7 +15,12 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class ParticipationCertificationScreen extends StatefulWidget {
   static String get routeName => 'participation_certification';
 
-  const ParticipationCertificationScreen({super.key});
+  final String id;
+
+  const ParticipationCertificationScreen({
+    super.key,
+    required this.id,
+  });
 
   @override
   State<ParticipationCertificationScreen> createState() =>
@@ -158,7 +163,10 @@ class _CertificationScreenState
                         setState(() {
                           isLoading = false;
                         });
-                        context.goNamed(ParticipationTermScreen.routeName);
+                        context.pushNamed(
+                          ParticipationTermScreen.routeName,
+                          pathParameters: {'id': widget.id},
+                        );
                       },
                       style: MyButtonStyle.secondary,
                       child: const Text('인증번호 확인'),

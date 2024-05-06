@@ -44,6 +44,17 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
     }).toList();
   }
 
+  void participate({
+    required String id,
+  }) {
+    state = state.map((e) {
+      if (e.id == id) {
+        return e.copyWith(isParticipation: true);
+      }
+      return e;
+    }).toList();
+  }
+
   List<EventModel> getItems() {
     return [
       EventDetailModel(

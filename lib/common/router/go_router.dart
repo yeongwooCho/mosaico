@@ -179,16 +179,23 @@ List<RouteBase> get routes => [
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
-        path: '/participation_certification',
+        path: '/participation_certification/:id',
         name: ParticipationCertificationScreen.routeName,
-        builder: (_, state) => ParticipationCertificationScreen(),
+        builder: (_, state) {
+          final id = state.pathParameters['id']!;
+
+          return ParticipationCertificationScreen(id: id);
+        },
         routes: [
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
             path: 'term',
             name: ParticipationTermScreen.routeName,
-            builder: (_, state) => ParticipationTermScreen(
-            ),
+            builder: (_, state) {
+              final id = state.pathParameters['id']!;
+
+              return ParticipationTermScreen(id: id);
+            },
           )
         ],
       ),

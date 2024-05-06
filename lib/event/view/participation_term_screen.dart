@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/common/const/colors.dart';
@@ -6,15 +7,21 @@ import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
 import 'package:mosaico/common/view/completion_screen.dart';
+import 'package:mosaico/event/provider/event_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class ParticipationTermScreen extends StatelessWidget {
+class ParticipationTermScreen extends ConsumerWidget {
   static String get routeName => "participation_term";
 
-  const ParticipationTermScreen({super.key});
+  final String id;
+
+  const ParticipationTermScreen({
+    super.key,
+    required this.id,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
       appbar: const DefaultAppBar(title: '개인정보 활용'),
       child: Padding(
@@ -36,7 +43,7 @@ class ParticipationTermScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32.0),
             Expanded(
-              child: TermContainer(),
+              child: TermContainer(id: id, ref: ref),
             ),
           ],
         ),
@@ -46,7 +53,14 @@ class ParticipationTermScreen extends StatelessWidget {
 }
 
 class TermContainer extends StatefulWidget {
-  const TermContainer({super.key});
+  final String id;
+  final WidgetRef ref;
+
+  const TermContainer({
+    super.key,
+    required this.id,
+    required this.ref,
+  });
 
   @override
   State<TermContainer> createState() => _TermContainerState();
@@ -145,7 +159,9 @@ class _TermContainerState extends State<TermContainer> {
         PrimaryButton(
           onPressed: isUse && isPersonalInfo && isMarketing
               ? () {
-
+                  widget.ref
+                      .read(eventsProvider.notifier)
+                      .participate(id: widget.id);
 
                   context.goNamed(
                     CompletionScreen.routeName,

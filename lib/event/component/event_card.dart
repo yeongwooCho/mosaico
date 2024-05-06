@@ -128,6 +128,7 @@ class EventCard extends ConsumerWidget {
                         renderButtonForParticipationStatus(
                           context: context,
                           participationStatus: participationStatus,
+                          eventId: id,
                         ),
                       ],
                     ),
