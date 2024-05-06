@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/event/model/event_model.dart';
+import 'package:mosaico/event/view/participation_certification_screen.dart';
 
 Widget renderButtonForParticipationStatus({
   required BuildContext context,
@@ -14,7 +16,9 @@ Widget renderButtonForParticipationStatus({
       );
     case ParticipationStatus.ready:
       return SecondaryButton(
-        onPressed: () {},
+        onPressed: () {
+          context.pushNamed(ParticipationCertificationScreen.routeName);
+        },
         child: Text(participationStatus.label),
       );
     case ParticipationStatus.done:

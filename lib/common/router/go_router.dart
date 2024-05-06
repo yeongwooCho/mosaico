@@ -10,6 +10,8 @@ import 'package:mosaico/event/view/event_detail_screen.dart';
 import 'package:mosaico/event/view/event_of_like_screen.dart';
 import 'package:mosaico/event/view/event_of_participation_screen.dart';
 import 'package:mosaico/event/view/event_screen.dart';
+import 'package:mosaico/event/view/participation_certification_screen.dart';
+import 'package:mosaico/event/view/participation_term_screen.dart';
 import 'package:mosaico/friend/view/friend_screen.dart';
 import 'package:mosaico/notification/view/notification_detail_screen.dart';
 import 'package:mosaico/notification/view/notification_screen.dart';
@@ -171,6 +173,21 @@ List<RouteBase> get routes => [
             name: NotificationDetailScreen.routeName,
             builder: (_, state) => NotificationDetailScreen(
               id: state.pathParameters['id']!,
+            ),
+          )
+        ],
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/participation_certification',
+        name: ParticipationCertificationScreen.routeName,
+        builder: (_, state) => ParticipationCertificationScreen(),
+        routes: [
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: 'term',
+            name: ParticipationTermScreen.routeName,
+            builder: (_, state) => ParticipationTermScreen(
             ),
           )
         ],
