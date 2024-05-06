@@ -210,11 +210,8 @@ class _ProfileEventsLists extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final events = ref.watch(eventsProvider);
-
-    final isParticipationEvents =
-        events.where((element) => element.isParticipation).toList();
-    final isLikeEvents = events.where((element) => element.isLike).toList();
+    final eventsOfParticipation = ref.watch(eventsOfParticipationProvider);
+    final eventsOfLike = ref.watch(eventsOfLikeProvider);
     final isSeeEvents = user.seeList;
 
     return Padding(
@@ -229,8 +226,8 @@ class _ProfileEventsLists extends ConsumerWidget {
               onTap: () {},
             ),
           ),
-          isParticipationEvents.isNotEmpty
-              ? _renderHorizontalList(events: isParticipationEvents)
+          eventsOfParticipation.isNotEmpty
+              ? _renderHorizontalList(events: eventsOfParticipation)
               : _renderEmptyContainer(),
           const SizedBox(height: 40.0),
           _renderTitle(
@@ -240,8 +237,8 @@ class _ProfileEventsLists extends ConsumerWidget {
               onTap: () {},
             ),
           ),
-          isLikeEvents.isNotEmpty
-              ? _renderHorizontalList(events: isLikeEvents)
+          eventsOfLike.isNotEmpty
+              ? _renderHorizontalList(events: eventsOfLike)
               : _renderEmptyContainer(),
           const SizedBox(height: 40.0),
           _renderTitle(

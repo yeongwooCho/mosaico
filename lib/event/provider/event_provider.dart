@@ -5,6 +5,18 @@ import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/model/rating_model.dart';
 import 'package:mosaico/user/model/user_model.dart';
 
+final eventsOfLikeProvider = Provider<List<EventModel>>((ref) {
+  final events = ref.watch(eventsProvider);
+
+  return events.where((element) => element.isLike).toList();
+});
+
+final eventsOfParticipationProvider = Provider<List<EventModel>>((ref) {
+  final events = ref.watch(eventsProvider);
+
+  return events.where((element) => element.isParticipation).toList();
+});
+
 final eventDetailProvider = Provider.family<EventModel, String>((ref, id) {
   final events = ref.watch(eventsProvider);
 
