@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hidable/hidable.dart';
-import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
@@ -14,6 +13,7 @@ import 'package:mosaico/event/model/event_detail_model.dart';
 import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/model/rating_model.dart';
 import 'package:mosaico/event/provider/event_provider.dart';
+import 'package:mosaico/event/util/render_button_for_participation_status.dart';
 
 class EventDetailScreen extends ConsumerStatefulWidget {
   static String get routeName => "event_detail";
@@ -54,6 +54,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
             children: [
               Expanded(
                 child: renderButtonForParticipationStatus(
+                  context: context,
                   participationStatus: event.participationStatus,
                 ),
               ),
@@ -87,38 +88,6 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
         ],
       ),
     );
-  }
-
-  Widget renderButtonForParticipationStatus({
-    required ParticipationStatus participationStatus,
-  }) {
-    switch (participationStatus) {
-      case ParticipationStatus.expected:
-        return ContainerButton(
-          onPressed: null,
-          child: Text(participationStatus.label),
-        );
-      case ParticipationStatus.ready:
-        return SecondaryButton(
-          onPressed: () {},
-          child: Text(participationStatus.label),
-        );
-      case ParticipationStatus.done:
-        return ContainerButton(
-          onPressed: null,
-          child: Text(participationStatus.label),
-        );
-      case ParticipationStatus.expired:
-        return ContainerButton(
-          onPressed: null,
-          child: Text(participationStatus.label),
-        );
-      case ParticipationStatus.rating:
-        return SecondaryButton(
-          onPressed: () {},
-          child: Text(participationStatus.label),
-        );
-    }
   }
 
   SliverPadding renderEventCard({
