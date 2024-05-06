@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/component/default_button.dart';
 import 'package:mosaico/event/model/event_model.dart';
+import 'package:mosaico/event/view/event_rating_screen.dart';
 import 'package:mosaico/event/view/participation_certification_screen.dart';
 
 Widget renderButtonForParticipationStatus({
@@ -19,9 +20,8 @@ Widget renderButtonForParticipationStatus({
       return SecondaryButton(
         onPressed: () {
           context.pushNamed(ParticipationCertificationScreen.routeName,
-              pathParameters: {
-                'id': eventId,
-              });
+              pathParameters: {'id': eventId},
+          );
         },
         child: Text(participationStatus.label),
       );
@@ -37,7 +37,11 @@ Widget renderButtonForParticipationStatus({
       );
     case ParticipationStatus.rating:
       return SecondaryButton(
-        onPressed: () {},
+        onPressed: () {
+          context.pushNamed(EventRatingScreen.routeName,
+            pathParameters: {'id': eventId},
+          );
+        },
         child: Text(participationStatus.label),
       );
     case ParticipationStatus.ratingDone:

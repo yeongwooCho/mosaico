@@ -19,6 +19,7 @@ class EventCard extends ConsumerWidget {
   final int participants;
   final bool isLike;
   final ParticipationStatus participationStatus;
+  final bool isButton;
 
   const EventCard({
     super.key,
@@ -32,10 +33,12 @@ class EventCard extends ConsumerWidget {
     required this.participants,
     required this.isLike,
     required this.participationStatus,
+    this.isButton = true,
   });
 
   factory EventCard.fromModel({
     required EventModel model,
+    bool? isButton,
   }) {
     return EventCard(
       id: model.id,
@@ -48,6 +51,7 @@ class EventCard extends ConsumerWidget {
       participants: model.participants,
       isLike: model.isLike,
       participationStatus: model.participationStatus,
+      isButton: isButton ?? true,
     );
   }
 
@@ -125,7 +129,8 @@ class EventCard extends ConsumerWidget {
                           endAt: endAt,
                           participants: participants,
                         ),
-                        renderButtonForParticipationStatus(
+                        if (isButton)
+                          renderButtonForParticipationStatus(
                           context: context,
                           participationStatus: participationStatus,
                           eventId: id,

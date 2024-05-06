@@ -9,6 +9,7 @@ import 'package:mosaico/common/view/splash_screen.dart';
 import 'package:mosaico/event/view/event_detail_screen.dart';
 import 'package:mosaico/event/view/event_of_like_screen.dart';
 import 'package:mosaico/event/view/event_of_participation_screen.dart';
+import 'package:mosaico/event/view/event_rating_screen.dart';
 import 'package:mosaico/event/view/event_screen.dart';
 import 'package:mosaico/event/view/participation_certification_screen.dart';
 import 'package:mosaico/event/view/participation_term_screen.dart';
@@ -135,7 +136,18 @@ List<RouteBase> get routes => [
                 path: 'participation',
                 name: EventOfParticipationScreen.routeName,
                 builder: (context, state) => EventOfParticipationScreen(),
-              ),
+                  routes: [
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      path: 'rating/:id',
+                      name: EventRatingScreen.routeName,
+                      builder: (context, state) {
+                        final id = state.pathParameters['id']!;
+
+                        return EventRatingScreen(id: id);
+                      },
+                    ),
+                  ]),
               GoRoute(
                 parentNavigatorKey: _rootNavigatorKey,
                 path: 'like',
