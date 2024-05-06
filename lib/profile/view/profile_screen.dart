@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mosaico/common/component/show/show_cupertino_alert.dart';
 import 'package:mosaico/common/const/colors.dart';
 import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
@@ -9,6 +10,7 @@ import 'package:mosaico/common/layout/default_layout.dart';
 import 'package:mosaico/profile/view/edit_profile_screen.dart';
 import 'package:mosaico/user/model/user_model.dart';
 import 'package:mosaico/user/provider/user_provider.dart';
+import 'package:mosaico/user/view/login_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -73,7 +75,20 @@ class ProfileScreen extends ConsumerWidget {
                 size: 28.0,
               ),
               title: '로그아웃',
-              onTap: () {},
+              onTap: () {
+                showCupertinoAlert(
+                  context: context,
+                  titleWidget: const Text('로그아웃 하시겠습니까?'),
+                  completeText: '확인',
+                  completeFunction: () {
+                    context.goNamed(LoginScreen.routeName);
+                  },
+                  cancelText: '취소',
+                  cancelFunction: () {
+                    context.pop();
+                  },
+                );
+              },
             ),
             const SizedBox(height: 40.0),
           ],
