@@ -19,7 +19,10 @@ class UserStateNotifier extends StateNotifier<UserModel> {
               '패션',
               '뷰티',
               '푸드',
-            ]));
+            ],
+            seeList: [],
+          ),
+        );
 
   void updateKeywords({required List<String> newKeywords}) {
     state = state.copyWith(

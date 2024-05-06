@@ -1,3 +1,5 @@
+import 'package:mosaico/event/model/event_model.dart';
+
 class UserModel {
   final String id; // primary key
   final String username; // 아이디
@@ -5,6 +7,7 @@ class UserModel {
   final String name; // 이름
   final String phone; // 휴대폰
   final String profileImage; // 이미지 경로
+  final List<EventModel> seeList;
 
   final List<String> keywords; // 관심 키워드
 
@@ -16,6 +19,7 @@ class UserModel {
     required this.phone,
     required this.profileImage,
     required this.keywords,
+    required this.seeList,
   });
 
   UserModel copyWith({
@@ -26,6 +30,7 @@ class UserModel {
     String? phone,
     String? profileImage,
     List<String>? keywords,
+    List<EventModel>? seeList,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -35,6 +40,7 @@ class UserModel {
       phone: phone ?? this.phone,
       profileImage: profileImage ?? this.profileImage,
       keywords: keywords ?? this.keywords,
+      seeList: seeList ?? this.seeList,
     );
   }
 }
