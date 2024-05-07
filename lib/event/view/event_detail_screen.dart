@@ -67,13 +67,13 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
         slivers: [
           renderEventCard(event: event),
           renderDescription(
-              title: '이벤트 내용',
-              description:
-                  '동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 '),
+            title: '이벤트 내용',
+            description: event.detail,
+          ),
           renderDescription(
-              title: '참여 조건',
-              description:
-                  '동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 동해물과 백두산이 마르고 '),
+            title: '참여 조건',
+            description: event.condition,
+          ),
           renderChart(data: event.graphData),
           SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: 40.0),
