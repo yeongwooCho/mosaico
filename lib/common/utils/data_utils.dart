@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
@@ -23,7 +25,22 @@ class DataUtils {
   }
 
   static String getUuid() {
-    final uuid = Uuid();
+    const uuid = Uuid();
     return uuid.v4();
+  }
+
+  static List<String> getRandomId({
+    required int dividerNumber,
+    required int count,
+  }) {
+    final randomObj = Random();
+
+    final List<String> ids = [];
+
+    for (int i = 0; i < count; i++) {
+      ids.add(randomObj.nextInt(dividerNumber).toString());
+    }
+
+    return ids;
   }
 }
