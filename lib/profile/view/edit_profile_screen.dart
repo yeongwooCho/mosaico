@@ -33,7 +33,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userMeProvider);
     final categories = ref.watch(categoryProvider);
     final keywords = categories.map((e) => e.key).toList();
 

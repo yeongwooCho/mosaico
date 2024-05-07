@@ -36,7 +36,7 @@ class _EventRatingScreenState extends ConsumerState<EventRatingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userMeProvider);
     final event = ref.watch(eventDetailProvider(widget.id));
 
     return DefaultLayout(

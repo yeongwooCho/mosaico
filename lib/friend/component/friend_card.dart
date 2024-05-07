@@ -4,11 +4,11 @@ import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/user/model/user_model.dart';
 
 class FriendCard extends StatelessWidget {
-  final UserModel user;
+  final UserModel friend;
 
   const FriendCard({
     super.key,
-    required this.user,
+    required this.friend,
   });
 
   @override
@@ -26,14 +26,14 @@ class FriendCard extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              user.profileImage,
+              friend.profileImage,
               height: 60.0,
               width: 60.0,
               fit: BoxFit.fill,
             ),
             const SizedBox(height: 4.0),
             Text(
-              user.name,
+              friend.name,
               style: MyTextStyle.descriptionRegular,
             ),
           ],

@@ -2,13 +2,38 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/user/model/user_model.dart';
 
-final userProvider = StateNotifierProvider<UserStateNotifier, UserModel>(
+final friendsProvider = Provider<List<UserModel>>((ref) {
+  final users = ref.watch(userProvider);
+  return users.where((element) => element.id != '0').toList();
+});
+
+final userMeProvider = Provider<UserModel>((ref) {
+  final userMe = ref.watch(userProvider)[0];
+  return userMe;
+});
+
+final userProvider = StateNotifierProvider<UserStateNotifier, List<UserModel>>(
   (ref) => UserStateNotifier(),
 );
 
-class UserStateNotifier extends StateNotifier<UserModel> {
+class UserStateNotifier extends StateNotifier<List<UserModel>> {
   UserStateNotifier()
-      : super(UserModel(
+      : super([
+          UserModel(
+            id: '0',
+            username: 'event0877',
+            password: 'event0877',
+            name: '송정원',
+            phone: '01012341234',
+            profileImage: ImagePath.user,
+            keywords: [
+              '패션',
+              '뷰티',
+              '푸드',
+            ],
+            seeList: [],
+          ),
+          UserModel(
             id: '1',
             username: 'event0877',
             password: 'event0877',
@@ -22,18 +47,88 @@ class UserStateNotifier extends StateNotifier<UserModel> {
             ],
             seeList: [],
           ),
-        );
+          UserModel(
+            id: '2',
+            username: 'event0877',
+            password: 'event0877',
+            name: '송정원',
+            phone: '01012341234',
+            profileImage: ImagePath.user,
+            keywords: [
+              '패션',
+              '뷰티',
+              '푸드',
+            ],
+            seeList: [],
+          ),
+          UserModel(
+            id: '3',
+            username: 'event0877',
+            password: 'event0877',
+            name: '송정원',
+            phone: '01012341234',
+            profileImage: ImagePath.user,
+            keywords: [
+              '패션',
+              '뷰티',
+              '푸드',
+            ],
+            seeList: [],
+          ),
+          UserModel(
+            id: '4',
+            username: 'event0877',
+            password: 'event0877',
+            name: '송정원',
+            phone: '01012341234',
+            profileImage: ImagePath.user,
+            keywords: [
+              '패션',
+              '뷰티',
+              '푸드',
+            ],
+            seeList: [],
+          ),
+          UserModel(
+            id: '5',
+            username: 'event0877',
+            password: 'event0877',
+            name: '송정원',
+            phone: '01012341234',
+            profileImage: ImagePath.user,
+            keywords: [
+              '패션',
+              '뷰티',
+              '푸드',
+            ],
+            seeList: [],
+          ),
+        ]);
 
   void updateKeywords({required List<String> newKeywords}) {
-    state = state.copyWith(
-      keywords: newKeywords,
-    );
+    state = [
+      ...state.map((e) {
+        if (e.id == '0') {
+          return e.copyWith(
+            keywords: newKeywords,
+          );
+        }
+        return e;
+      })
+    ];
   }
 
   void updateInfo({required String name, required String phone}) {
-    state = state.copyWith(
-      name: name,
-      phone: phone,
-    );
+    state = [
+      ...state.map((e) {
+        if (e.id == '0') {
+          return e.copyWith(
+            name: name,
+            phone: phone,
+          );
+        }
+        return e;
+      })
+    ];
   }
 }

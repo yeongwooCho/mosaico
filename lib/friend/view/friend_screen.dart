@@ -16,9 +16,8 @@ class FriendScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final friends = ref.watch(friendsProvider);
     final events = ref.watch(eventsRandomProvider(5));
-
-    final user = ref.watch(userProvider);
 
     return DefaultLayout(
       appbar: const DefaultAppBar(title: '내 친구 활동'),
@@ -35,13 +34,13 @@ class FriendScreen extends ConsumerWidget {
                   vertical: 20.0,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  // TODO: 유저 index 구분
-                  return FriendCard(user: user);
+                  final friend = friends[index];
+                  return FriendCard(friend: friend);
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(width: 16.0);
                 },
-                itemCount: 10,
+                itemCount: friends.length,
               ),
             ),
           ),
