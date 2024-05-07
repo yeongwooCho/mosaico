@@ -4,8 +4,7 @@ import 'package:mosaico/common/utils/data_utils.dart';
 import 'package:mosaico/event/model/event_detail_model.dart';
 import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/model/rating_model.dart';
-import 'package:mosaico/user/model/user_model.dart';
-import 'package:mosaico/user/provider/user_provider.dart';
+import 'package:mosaico/event/provider/rating_provider.dart';
 
 final eventsRandomProvider =
     Provider.family<List<EventModel>, int>((ref, count) {
@@ -39,12 +38,22 @@ final eventDetailProvider = Provider.family<EventModel, String>((ref, id) {
 
 final eventsProvider =
     StateNotifierProvider<EventStateNotifier, List<EventModel>>(
-  (ref) => EventStateNotifier(),
+  (ref) => EventStateNotifier(ref: ref),
 );
 
+/// 상태관리
+/// TODO: 행위가 필요하면(Read) ref를 받아서 사용해야 한다.
+/// 그런데 데이터가 필요한 경우, watch를 사용할 경우라면 provider에서 watch하고
+/// 데이터를 전달해주는게 맞다.
+///
+
 class EventStateNotifier extends StateNotifier<List<EventModel>> {
-  EventStateNotifier() : super([]) {
-    state = getItems();
+  final Ref ref;
+
+  EventStateNotifier({
+    required this.ref,
+  }) : super([]) {
+    initItems();
   }
 
   void updateLike({
@@ -81,8 +90,8 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
     }).toList();
   }
 
-  List<EventModel> getItems() {
-    return [
+  void initItems() {
+    state = [
       EventDetailModel(
         id: '0',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
@@ -97,249 +106,195 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         detail: '디테일 샬라샬라',
         condition: '조건 샬라살랴',
         graphData: [1,54,62,82,93,155,255,344,555,675,744,833,922],
-        ratings: [
-          RatingModel(
-            id: '1',
-            user: UserModel(
-              id: '1',
-              username: 'asdf1234',
-              password: '1234',
-              name: '이수연',
-              phone: '01012341234',
-              profileImage: ImagePath.logo,
-              keywords: [
-                'as',
-                'zx',
-                'xc',
-              ],
-              seeList: [],
-            ),
-            score: 4,
-            content: '안녕하세요! 이번 이벤트게 참여하게 되었는데 엄청 좋은 경험이라 리뷰를 남기게 되었습니다. 처음으로 리뷰 남겨보네요. 이벤트에서 배운 점을 바로 적용해보니 너무 재밌는 취미를 갖게 된 것 같아요 감사합니다.',
-          ),
-          RatingModel(
-            id: '1',
-            user: UserModel(
-              id: '1',
-              username: 'asdf1234',
-              password: '1234',
-              name: '이수연',
-              phone: '01012341234',
-              profileImage: ImagePath.logo,
-              keywords: [
-                'as',
-                'zx',
-                'xc',
-              ],
-              seeList: [],
-            ),
-            score: 4,
-            content: '안녕하세요! 이번 이벤트게 참여하게 되었는데 엄청 좋은 경험이라 리뷰를 남기게 되었습니다. 처음으로 리뷰 남겨보네요. 이벤트에서 배운 점을 바로 적용해보니 너무 재밌는 취미를 갖게 된 것 같아요 감사합니다.',
-          ),
-          RatingModel(
-            id: '1',
-            user: UserModel(
-              id: '1',
-              username: 'asdf1234',
-              password: '1234',
-              name: '이수연',
-              phone: '01012341234',
-              profileImage: ImagePath.logo,
-              keywords: [
-                'as',
-                'zx',
-                'xc',
-              ],
-              seeList: [],
-            ),
-            score: 4,
-            content: '안녕하세요! 이번 이벤트게 참여하게 되었는데 엄청 좋은 경험이라 리뷰를 남기게 되었습니다. 처음으로 리뷰 남겨보네요. 이벤트에서 배운 점을 바로 적용해보니 너무 재밌는 취미를 갖게 된 것 같아요 감사합니다.',
-          ),
-        ],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
       ),
-
-      EventModel(
+      EventDetailModel(
         id: '1',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 3, 2),
-        endAt: DateTime(2024, 4, 2),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
-        isParticipation: false,
+        isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '2',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 21),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
         isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '3',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 21),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
-        isParticipation: false,
+        isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '4',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 2),
-        endAt: DateTime(2024, 5, 30),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
         isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '5',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 2),
-        endAt: DateTime(2024, 5, 30),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
-        isParticipation: false,
+        isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '6',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 5, 6),
-        endAt: DateTime(2024, 5, 21),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
         isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '7',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 5, 6),
-        endAt: DateTime(2024, 5, 21),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
-        isParticipation: false,
+        isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '8',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 21),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
         isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '9',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 21),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
-        isParticipation: false,
+        isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '10',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 1),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
         isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
       ),
-      EventModel(
+      EventDetailModel(
         id: '11',
         title: '[바디워시] 나를 위한 시간 13분! 바디관리 하나로 끝! <워시+각질제거+입욕+향>',
         imagePath: ImagePath.image,
         tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 1),
+        startAt: DateTime(2024, 3, 22),
+        endAt: DateTime(2024, 4, 21),
         totalRatingPoint: 4.9,
         participants: 12456,
         isLike: true,
         isParticipation: true,
+        detail: '디테일 샬라샬라',
+        condition: '조건 샬라살랴',
+        graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
+        ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
-        ratings: [],
-      ),
-      EventModel(
-        id: '12',
-        title: '1234',
-        imagePath: ImagePath.image,
-        tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 1),
-        totalRatingPoint: 4.9,
-        participants: 12456,
-        isLike: true,
-        isParticipation: true,
-        category: '',
-        ratings: [],
-      ),
-      EventModel(
-        id: '13',
-        title: '2345',
-        imagePath: ImagePath.image,
-        tags: ['신상품', '세일', '온라인 단독', '사은품'],
-        startAt: DateTime(2024, 4, 22),
-        endAt: DateTime(2024, 5, 1),
-        totalRatingPoint: 4.9,
-        participants: 12456,
-        isLike: true,
-        isParticipation: true,
-        category: '',
-        ratings: [],
       ),
     ];
   }
