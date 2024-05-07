@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -18,14 +19,13 @@ class CategoryModalBottomSheet extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(
-          child: GestureDetector(
-            onTap: () {
-              context.pop();
-            },
-            child: Container(
-              color: MyColor.empty,
-            ),
+        GestureDetector(
+          onTap: () {
+            context.pop();
+          },
+          child: Container(
+            height: 40.0,
+            color: MyColor.empty,
           ),
         ),
         Container(
@@ -83,23 +83,25 @@ class CategoryModalBottomSheet extends ConsumerWidget {
           ),
         ),
         Container(color: MyColor.middleGrey, height: 1.0),
-        Container(
-          color: MyColor.lightGrey,
-          height: MediaQuery.of(context).size.height - 200,
-          child: ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              final category = categories[index];
+        Expanded(
+          child: Container(
+            color: MyColor.lightGrey,
+            // height: MediaQuery.of(context).size.height - 200,
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                final category = categories[index];
 
-              return CategoryCard(category: category);
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 1.0,
-                color: MyColor.middleGrey,
-              );
-            },
-            itemCount: categories.length,
+                return CategoryCard(category: category);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 1.0,
+                  color: MyColor.middleGrey,
+                );
+              },
+              itemCount: categories.length,
+            ),
           ),
         ),
       ],
