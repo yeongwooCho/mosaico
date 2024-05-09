@@ -26,7 +26,7 @@ enum ParticipationStatus {
     final startAt = event.startAt;
     final endAt = event.endAt;
     final isParticipation = event.isParticipation;
-    final isRatingDone = event.ratings.isNotEmpty;
+    final isRatingDone = event.isRatingDone;
 
     if (nowDate.isBefore(startAt) && now.isBefore(endAt)) {
       return ParticipationStatus.expected;
@@ -65,6 +65,7 @@ class EventModel {
   final List<RatingModel> ratings;
   final double totalRatingPoint;
   final bool isParticipation;
+  final bool isRatingDone;
   final bool isLike;
   final String category;
   final List<int> graphData;
@@ -79,6 +80,7 @@ class EventModel {
     required this.ratings,
     required this.totalRatingPoint,
     required this.isParticipation,
+    required this.isRatingDone,
     required this.isLike,
     required this.category,
     required this.graphData,
@@ -109,6 +111,7 @@ class EventModel {
       ratings: ratings ?? this.ratings,
       totalRatingPoint: totalRatingPoint ?? this.totalRatingPoint,
       isParticipation: isParticipation ?? this.isParticipation,
+      isRatingDone: isRatingDone ?? this.isRatingDone,
       isLike: isLike ?? this.isLike,
       category: category ?? this.category,
       graphData: graphData ?? this.graphData,

@@ -139,6 +139,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '1',
@@ -172,6 +173,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '2',
@@ -209,6 +211,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '3',
@@ -247,6 +250,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '4',
@@ -284,6 +288,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '5',
@@ -322,6 +327,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '6',
@@ -359,6 +365,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '7',
@@ -391,6 +398,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '8',
@@ -426,6 +434,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '9',
@@ -442,6 +451,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         graphData: [1, 54, 62, 82, 93, 155, 255, 344, 555, 675, 744, 833, 922],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '10',
@@ -476,6 +486,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '11',
@@ -513,6 +524,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '12',
@@ -549,6 +561,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '13',
@@ -584,6 +597,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '14',
@@ -618,6 +632,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '15',
@@ -652,6 +667,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: true,
       ),
       EventDetailModel(
         id: '16',
@@ -684,6 +700,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '17',
@@ -714,6 +731,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: true,
       ),
       EventDetailModel(
         id: '18',
@@ -745,6 +763,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         ],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: false,
       ),
       EventDetailModel(
         id: '19',
@@ -762,6 +781,7 @@ class EventStateNotifier extends StateNotifier<List<EventModel>> {
         graphData: [1123, 5412, 6212, 8212, 9312, 15125],
         ratings: ref.read(ratingsRandomProvider(7)),
         category: '',
+        isRatingDone: true,
       ),
     ];
   }

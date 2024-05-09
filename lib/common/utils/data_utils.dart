@@ -50,4 +50,10 @@ class DataUtils {
 
     return ids;
   }
+
+  static List<T> getRandomShuffledList<T>(List<T> items) {
+    List<T> newList = List.from(items); // 원본 리스트의 복사본 생성
+    newList.shuffle(Random()); // 복사본 리스트를 랜덤으로 섞기
+    return newList; // 섞인 리스트 반환
+  }
 }

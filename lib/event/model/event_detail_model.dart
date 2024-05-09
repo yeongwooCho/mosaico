@@ -14,6 +14,7 @@ class EventDetailModel extends EventModel {
     required super.ratings,
     required super.totalRatingPoint,
     required super.isParticipation,
+    required super.isRatingDone,
     required super.isLike,
     required super.category,
     required super.graphData,

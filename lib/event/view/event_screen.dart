@@ -5,7 +5,9 @@ import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
+import 'package:mosaico/common/utils/data_utils.dart';
 import 'package:mosaico/event/component/event_main_vertival_list.dart';
+import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/provider/event_provider.dart';
 import 'package:mosaico/notification/view/notification_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -49,7 +51,7 @@ class EventScreen extends ConsumerWidget {
           ),
         ],
       ),
-      child: EventMainVerticalList(events: events),
+      child: EventMainVerticalList(events: DataUtils.getRandomShuffledList<EventModel>(events)),
     );
   }
 }
