@@ -39,15 +39,16 @@ class NotificationDetailScreen extends ConsumerWidget {
                 DataUtils.convertDateTimeToDateTimeString(
                   datetime: notification.createAt,
                 ),
-                style: MyTextStyle.bodyTitleRegular.copyWith(
+                style: MyTextStyle.bodyRegular.copyWith(
                   color: MyColor.darkGrey,
                 ),
               ),
               const SizedBox(height: 40.0),
               Text(
                 notification.description,
-                style: MyTextStyle.bodyTitleRegular,
+                style: MyTextStyle.bodyRegular,
               ),
+              const SizedBox(height: 60.0),
             ],
           ),
         ),
