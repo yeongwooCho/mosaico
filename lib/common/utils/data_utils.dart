@@ -29,6 +29,13 @@ class DataUtils {
     return uuid.v4();
   }
 
+  static int getRandomNumber({
+    required int dividerNumber,
+  }) {
+    final randomObj = Random();
+    return randomObj.nextInt(dividerNumber);
+  }
+
   static List<String> getRandomId({
     required int dividerNumber,
     required int count,
