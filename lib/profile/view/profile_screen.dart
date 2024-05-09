@@ -214,7 +214,10 @@ class _ProfileEventsLists extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final eventsOfParticipation = ref.watch(eventsOfParticipationProvider);
     final eventsOfLike = ref.watch(eventsOfLikeProvider);
-    final isSeeEvents = user.seeList;
+    // final isSeeEvents = user.seeList;
+    final isSeeEvents = ref.watch(eventsProvider).where((event) {
+      return user.seeList.contains(event.id);
+    }).toList();
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40.0),
@@ -325,10 +328,10 @@ class _ProfileEventsLists extends ConsumerWidget {
           ),
           borderRadius: BorderRadius.circular(16.0),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             '이벤트가 존재하지 않습니다.',
-            style: MyTextStyle.bodyRegular.copyWith(color: MyColor.darkGrey),
+            style: MyTextStyle.descriptionRegular,
           ),
         ),
       ),

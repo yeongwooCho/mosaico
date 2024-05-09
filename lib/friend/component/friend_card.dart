@@ -5,10 +5,12 @@ import 'package:mosaico/user/model/user_model.dart';
 
 class FriendCard extends StatelessWidget {
   final UserModel friend;
+  final bool isSelected;
 
   const FriendCard({
     super.key,
     required this.friend,
+    required this.isSelected,
   });
 
   @override
@@ -17,7 +19,7 @@ class FriendCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 1.0,
-          color: MyColor.darkGrey,
+          color: isSelected ? MyColor.primary : MyColor.empty,
         ),
         borderRadius: BorderRadius.circular(12.0),
       ),

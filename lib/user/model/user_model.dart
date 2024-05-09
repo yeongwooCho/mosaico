@@ -7,7 +7,7 @@ class UserModel {
   final String name; // 이름
   final String phone; // 휴대폰
   final String profileImage; // 이미지 경로
-  final List<EventModel> seeList;
+  final List<String> seeList; // List EventModel id
 
   final List<String> keywords; // 관심 키워드
 
@@ -30,7 +30,7 @@ class UserModel {
     String? phone,
     String? profileImage,
     List<String>? keywords,
-    List<EventModel>? seeList,
+    List<String>? seeList,
   }) {
     return UserModel(
       id: id ?? this.id,

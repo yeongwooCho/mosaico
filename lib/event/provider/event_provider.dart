@@ -5,18 +5,29 @@ import 'package:mosaico/event/model/event_detail_model.dart';
 import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/model/rating_model.dart';
 import 'package:mosaico/event/provider/rating_provider.dart';
+import 'package:mosaico/user/provider/user_provider.dart';
 
-final eventsRandomProvider =
-    Provider.family<List<EventModel>, int>((ref, count) {
-  final events = ref.watch(eventsProvider);
+// final eventsBySelectedFriendProvider = Provider<List<EventModel>>((ref) {
+//   final selectedFriend = ref.watch(selectedFriendProvider);
+//   final randomNumber = DataUtils.getRandomNumber(dividerNumber: 4);
+//
+//   final events = ref.watch(eventsRandomProvider(randomNumber));
+//   ref.notifyListeners();
+//
+//   return events;
+// });
 
-  final ids = DataUtils.getRandomId(
-    dividerNumber: events.length,
-    count: count,
-  );
-
-  return events.where((element) => ids.contains(element.id)).toList();
-});
+// final eventsRandomProvider =
+//     Provider.family<List<EventModel>, int>((ref, count) {
+//   final events = ref.watch(eventsProvider);
+//
+//   final ids = DataUtils.getRandomId(
+//     dividerNumber: events.length,
+//     count: count,
+//   );
+//
+//   return events.where((element) => ids.contains(element.id)).toList();
+// });
 
 final eventsOfLikeProvider = Provider<List<EventModel>>((ref) {
   final events = ref.watch(eventsProvider);

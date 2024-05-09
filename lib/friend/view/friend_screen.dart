@@ -9,15 +9,24 @@ import 'package:mosaico/event/provider/event_provider.dart';
 import 'package:mosaico/friend/component/friend_card.dart';
 import 'package:mosaico/user/provider/user_provider.dart';
 
-class FriendScreen extends ConsumerWidget {
+class FriendScreen extends ConsumerStatefulWidget {
   static String get routeName => "friend";
 
   const FriendScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<FriendScreen> createState() => _FriendScreenState();
+}
+
+class _FriendScreenState extends ConsumerState<FriendScreen> {
+  @override
+  Widget build(BuildContext context) {
     final friends = ref.watch(friendsProvider);
-    final events = ref.watch(eventsRandomProvider(5));
+    final selectedFriend = ref.watch(selectedFriendProvider);
+
+    final events = ref.watch(eventsProvider).where((event) {
+      return selectedFriend.seeList.contains(event.id);
+    }).toList();
 
     return DefaultLayout(
       appbar: const DefaultAppBar(title: '내 친구 활동'),
@@ -35,10 +44,18 @@ class FriendScreen extends ConsumerWidget {
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   final friend = friends[index];
-                  return FriendCard(friend: friend);
+                  return InkWell(
+                    onTap: () {
+                      ref.read(selectedFriendProvider.notifier).state = friend;
+                    },
+                    child: FriendCard(
+                      friend: friend,
+                      isSelected: selectedFriend == friend,
+                    ),
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(width: 16.0);
+                  return const SizedBox(width: 8.0);
                 },
                 itemCount: friends.length,
               ),
@@ -61,7 +78,28 @@ class FriendScreen extends ConsumerWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: EventMainVerticalList(events: events),
+            child: events.isNotEmpty
+                ? EventMainVerticalList(events: events)
+                : Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 8.0),
+                    child: Container(
+                      height: 100.0,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1.0,
+                          color: MyColor.middleGrey,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '참여한 이벤트가 존재하지 않습니다.',
+                          style: MyTextStyle.descriptionRegular,
+                        ),
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),

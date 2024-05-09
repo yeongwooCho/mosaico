@@ -2,6 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mosaico/common/const/image_path.dart';
 import 'package:mosaico/user/model/user_model.dart';
 
+final selectedFriendProvider = StateProvider<UserModel>((ref) {
+  final selectedFriend = ref.read(friendsProvider)[0];
+  return selectedFriend;
+});
+
 final friendsProvider = Provider<List<UserModel>>((ref) {
   final users = ref.watch(userProvider);
   return users.where((element) => element.id != '0').toList();
@@ -72,7 +77,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/1.png',
         keywords: [],
-        seeList: [],
+        seeList: ['7', '8', '9'],
       ),
       UserModel(
         id: '2',
@@ -92,7 +97,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/3.png',
         keywords: [],
-        seeList: [],
+        seeList: ['1', '3', '4'],
       ),
       UserModel(
         id: '4',
@@ -102,7 +107,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/4.png',
         keywords: [],
-        seeList: [],
+        seeList: ['4', '5', '6'],
       ),
       UserModel(
         id: '5',
@@ -112,7 +117,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/5.png',
         keywords: [],
-        seeList: [],
+        seeList: ['2', '7', "8", '9'],
       ),
       UserModel(
         id: '6',
@@ -122,7 +127,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/6.png',
         keywords: [],
-        seeList: [],
+        seeList: ['0', '1'],
       ),
       UserModel(
         id: '7',
@@ -132,7 +137,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/7.png',
         keywords: [],
-        seeList: [],
+        seeList: ['2', '4', '9'],
       ),
       UserModel(
         id: '8',
@@ -142,7 +147,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/8.png',
         keywords: [],
-        seeList: [],
+        seeList: ['0', '2', '6'],
       ),
     ];
   }
