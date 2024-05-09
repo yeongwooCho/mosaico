@@ -35,7 +35,10 @@ final eventsOfLikeProvider = Provider<List<EventModel>>((ref) {
 final eventsOfParticipationProvider = Provider<List<EventModel>>((ref) {
   final events = ref.watch(eventsProvider);
 
-  return events.where((element) => element.isParticipation).toList();
+  final now = DateTime.now();
+  final nowDate = DateTime(now.year, now.month, now.day);
+
+  return events.where((element) => element.isParticipation && (!nowDate.isBefore(element.startAt))).toList();
 });
 
 final eventDetailProvider = Provider.family<EventModel, String>((ref, id) {
