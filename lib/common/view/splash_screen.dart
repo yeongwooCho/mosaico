@@ -31,8 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(
               ImagePath.logo,
-              width: MediaQuery.of(context).size.width * 2 / 3,
+              width: MediaQuery.of(context).size.width * 3 / 7,
             ),
+
           ],
         ),
       ),

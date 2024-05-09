@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/common/const/image_path.dart';
+import 'package:mosaico/common/const/text_styles.dart';
 import 'package:mosaico/common/layout/default_app_bar.dart';
 import 'package:mosaico/common/layout/default_layout.dart';
 import 'package:mosaico/event/component/event_main_vertival_list.dart';
@@ -20,8 +21,19 @@ class EventScreen extends ConsumerWidget {
 
     return DefaultLayout(
       appbar: DefaultAppBar(
+        centerTitle: false,
+        titleWidget: Row(
+          children: [
+            Image.asset(
+              ImagePath.logo,
+              height: 28.0,
+              width: 28.0,
+            ),
+            const SizedBox(width: 4.0),
+            const Text('모자이코', style: MyTextStyle.bodyTitleBold,)
+          ],
+        ),
         title: '',
-        leading: Image.asset(ImagePath.logo),
         action: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -32,7 +44,7 @@ class EventScreen extends ConsumerWidget {
               icon: PhosphorIcon(
                 PhosphorIcons.bell(),
               ),
-              iconSize: 32.0,
+              iconSize: 28.0,
             ),
           ),
         ],

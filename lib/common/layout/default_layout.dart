@@ -48,7 +48,7 @@ class _DefaultLayoutState extends State<DefaultLayout> {
           child: Visibility(
             visible: widget.isLoading,
             child: Container(
-              color: MyColor.barrier,
+              // color: MyColor.barrier,
               child: const Center(
                 child: CustomLoadingScreen(),
               ),
