@@ -113,15 +113,14 @@ class EventCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      // TODO: test
-                      id,
+                      title,
                       style: MyTextStyle.bodyRegular,
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 12.0),
                     _TagContainer(
                       tags: tags,
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 12.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
