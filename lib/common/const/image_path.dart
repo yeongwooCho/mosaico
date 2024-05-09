@@ -14,9 +14,6 @@ class ImagePath {
   static const kakaoScreen = "asset/img/social_login/screen/kakao.png";
   static const naverScreen = "asset/img/social_login/screen/naver.png";
 
-  /// event
-  static const image = "asset/img/event/1.png";
-
   /// user
   static const user = "asset/img/user/user.png";
 }
