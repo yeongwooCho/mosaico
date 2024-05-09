@@ -16,9 +16,9 @@ class EventCard extends ConsumerWidget {
   final DateTime startAt;
   final DateTime endAt;
   final double rating;
-  final int participants;
   final bool isLike;
   final bool isButton;
+  final List<int> graphData;
 
   const EventCard({
     super.key,
@@ -29,8 +29,8 @@ class EventCard extends ConsumerWidget {
     required this.startAt,
     required this.endAt,
     required this.rating,
-    required this.participants,
     required this.isLike,
+    required this.graphData,
     this.isButton = true,
   });
 
@@ -46,8 +46,8 @@ class EventCard extends ConsumerWidget {
       startAt: model.startAt,
       endAt: model.endAt,
       rating: model.totalRatingPoint,
-      participants: model.participants,
       isLike: model.isLike,
+      graphData: model.graphData,
       isButton: isButton ?? true,
     );
   }
@@ -127,7 +127,9 @@ class EventCard extends ConsumerWidget {
                         _EventDescription(
                           startAt: startAt,
                           endAt: endAt,
-                          participants: participants,
+                          participants: graphData
+                              .reduce((value, element) => value + element),
+                          rating: rating,
                         ),
                         if (isButton)
                           renderButtonForParticipationStatus(
@@ -195,12 +197,14 @@ class _EventDescription extends StatelessWidget {
   final DateTime startAt;
   final DateTime endAt;
   final int participants;
+  final double rating;
 
   const _EventDescription({
     super.key,
     required this.startAt,
     required this.endAt,
     required this.participants,
+    required this.rating,
   });
 
   @override
@@ -236,7 +240,7 @@ class _EventDescription extends StatelessWidget {
                   ),
                   const SizedBox(width: 4.0),
                   Text(
-                    4.9.toString(),
+                    rating.toString(),
                     style: MyTextStyle.minimumRegular.copyWith(
                       color: MyColor.secondary,
                     ),

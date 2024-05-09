@@ -1,10 +1,8 @@
 import 'package:mosaico/event/model/event_model.dart';
-import 'package:mosaico/event/model/rating_model.dart';
 
 class EventDetailModel extends EventModel {
   final String detail;
   final String condition;
-  final List<int> graphData;
 
   EventDetailModel({
     required super.id,
@@ -15,12 +13,11 @@ class EventDetailModel extends EventModel {
     required super.endAt,
     required super.ratings,
     required super.totalRatingPoint,
-    required super.participants,
     required super.isParticipation,
     required super.isLike,
     required super.category,
+    required super.graphData,
     required this.detail,
     required this.condition,
-    required this.graphData,
   });
 }

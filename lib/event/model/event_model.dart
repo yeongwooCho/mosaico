@@ -95,10 +95,10 @@ class EventModel {
   final DateTime endAt;
   final List<RatingModel> ratings;
   final double totalRatingPoint;
-  final int participants;
   final bool isParticipation;
   final bool isLike;
   final String category;
+  final List<int> graphData;
 
   EventModel({
     required this.id,
@@ -109,10 +109,10 @@ class EventModel {
     required this.endAt,
     required this.ratings,
     required this.totalRatingPoint,
-    required this.participants,
     required this.isParticipation,
     required this.isLike,
     required this.category,
+    required this.graphData,
   });
 
   EventModel copyWith({
@@ -128,6 +128,7 @@ class EventModel {
     bool? isParticipation,
     bool? isLike,
     String? category,
+    List<int>? graphData,
   }) {
     return EventModel(
       id: id ?? this.id,
@@ -138,10 +139,10 @@ class EventModel {
       endAt: endAt ?? this.endAt,
       ratings: ratings ?? this.ratings,
       totalRatingPoint: totalRatingPoint ?? this.totalRatingPoint,
-      participants: participants ?? this.participants,
       isParticipation: isParticipation ?? this.isParticipation,
       isLike: isLike ?? this.isLike,
       category: category ?? this.category,
+      graphData: graphData ?? this.graphData,
     );
   }
 }
