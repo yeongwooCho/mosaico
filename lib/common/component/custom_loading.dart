@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mosaico/common/const/colors.dart';
-import 'package:mosaico/common/const/image_path.dart';
 
 class CustomLoadingScreen extends StatelessWidget {
   const CustomLoadingScreen({super.key});
@@ -8,14 +8,13 @@ class CustomLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColor.barrier,
+      backgroundColor: MyColor.empty,
       body: Center(
-        child: Center(
-          child: Image.asset(
-            ImagePath.logo,
-            width: 160.0,
-            height: 160.0,
-          ),
+        child: LoadingAnimationWidget.discreteCircle(
+          color: MyColor.darkGrey,
+          secondRingColor: MyColor.middleGrey,
+          thirdRingColor: MyColor.lightGrey,
+          size: 80,
         ),
       ),
     );
