@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mosaico/event/component/event_card.dart';
 import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/view/event_detail_screen.dart';
+import 'package:mosaico/user/provider/user_provider.dart';
 
-class EventMainVerticalList extends StatelessWidget {
+class EventMainVerticalList extends ConsumerWidget {
   final List<EventModel> events;
 
   const EventMainVerticalList({
@@ -13,7 +15,7 @@ class EventMainVerticalList extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
@@ -22,6 +24,8 @@ class EventMainVerticalList extends StatelessWidget {
 
         return GestureDetector(
           onTap: () {
+            ref.read(userProvider.notifier).addUserMeSeeList(id: event.id);
+
             context.goNamed(
               EventDetailScreen.routeName,
               pathParameters: {'id': event.id},

@@ -53,6 +53,17 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
     ];
   }
 
+  void addUserMeSeeList({required String id}) {
+    state = [
+      ...state.map((e) {
+        if (e.id == '0') {
+          return e.copyWith(seeList: [...e.seeList, id]);
+        }
+        return e;
+      })
+    ];
+  }
+
   void initItems() {
     state = [
       UserModel(
@@ -67,7 +78,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
           '뷰티',
           '푸드',
         ],
-        seeList: [],
+        seeList: ['7', '8', '9'],
       ),
       UserModel(
         id: '1',

@@ -258,7 +258,7 @@ class _ProfileEventsLists extends ConsumerWidget {
             ),
           ),
           isSeeEvents.isNotEmpty
-              ? _renderHorizontalList(events: isSeeEvents)
+              ? _renderHorizontalList(events: isSeeEvents.reversed.toList())
               : _renderEmptyContainer(),
         ],
       ),

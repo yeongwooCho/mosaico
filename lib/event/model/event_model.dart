@@ -8,7 +8,7 @@ enum ParticipationStatus {
   // 진행 중인데 참여 했을 때
   done('참여완료'),
   // 끝났는데 참여 안 했을 때
-  expired('종료'),
+  expired('모자익 종료'),
   // 끝났는데 참여 했을 때
   rating('후기 작성'),
   // 끝났고 참여 했고 후기까지 작성
@@ -17,39 +17,6 @@ enum ParticipationStatus {
   const ParticipationStatus(this.label);
 
   final String label;
-
-  static ParticipationStatus getParticipationStatus({
-    required DateTime startAt,
-    required DateTime endAt,
-    required bool isParticipation,
-    required bool isRatingDone,
-  }) {
-    final now = DateTime.now();
-    final nowDate = DateTime(now.year, now.month, now.day);
-
-    if (nowDate.isBefore(startAt) && now.isBefore(endAt)) {
-      return ParticipationStatus.expected;
-    } else if (nowDate.isAfter(startAt) &&
-        now.isBefore(endAt) &&
-        !isParticipation) {
-      return ParticipationStatus.ready;
-    } else if (nowDate.isAfter(startAt) &&
-        now.isBefore(endAt) &&
-        isParticipation) {
-      return ParticipationStatus.done;
-    } else if (nowDate.isAfter(startAt) &&
-        now.isAfter(endAt) &&
-        !isParticipation) {
-      return ParticipationStatus.expired;
-    } else if (nowDate.isAfter(startAt) &&
-        now.isAfter(endAt) &&
-        isParticipation &&
-        isRatingDone) {
-      return ParticipationStatus.ratingDone;
-    } else {
-      return ParticipationStatus.rating;
-    }
-  }
 
   static ParticipationStatus getParticipationStatusFromEvent({
     required EventModel event,
@@ -63,12 +30,14 @@ enum ParticipationStatus {
 
     if (nowDate.isBefore(startAt) && now.isBefore(endAt)) {
       return ParticipationStatus.expected;
-    } else if (nowDate.isAfter(startAt) &&
-        now.isBefore(endAt) &&
+    } else if ((nowDate.isAfter(startAt) ||
+            (nowDate.isAtSameMomentAs(startAt))) &&
+        (now.isBefore(endAt) || (nowDate.isAtSameMomentAs(startAt))) &&
         !isParticipation) {
       return ParticipationStatus.ready;
-    } else if (nowDate.isAfter(startAt) &&
-        now.isBefore(endAt) &&
+    } else if ((nowDate.isAfter(startAt) ||
+            (nowDate.isAtSameMomentAs(startAt))) &&
+        (now.isBefore(endAt) || (nowDate.isAtSameMomentAs(startAt))) &&
         isParticipation) {
       return ParticipationStatus.done;
     } else if (nowDate.isAfter(startAt) &&
