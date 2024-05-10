@@ -214,16 +214,24 @@ class _ProfileEventsLists extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final eventsOfParticipation = ref.watch(eventsOfParticipationProvider);
     final eventsOfLike = ref.watch(eventsOfLikeProvider);
-    // final isSeeEvents = user.seeList;
-    final isSeeEvents = ref.watch(eventsProvider).where((event) {
-      return user.seeList.contains(event.id);
-    }).toList();
+    final eventOfSeeList = ref.watch(eventsOfSeeListProvider);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _renderTitle(
+            title: '최근 본 이벤트',
+            rightButton: const SizedBox(
+              height: 1.0,
+              width: 1.0,
+            ),
+          ),
+          eventOfSeeList.isNotEmpty
+              ? _renderHorizontalList(events: eventOfSeeList, ref: ref)
+              : _renderEmptyContainer(),
+          const SizedBox(height: 40.0),
           _renderTitle(
             title: '내가 지원한 이벤트',
             rightButton: SeeMoreButton(
@@ -234,7 +242,7 @@ class _ProfileEventsLists extends ConsumerWidget {
             ),
           ),
           eventsOfParticipation.isNotEmpty
-              ? _renderHorizontalList(events: eventsOfParticipation)
+              ? _renderHorizontalList(events: eventsOfParticipation, ref: ref)
               : _renderEmptyContainer(),
           const SizedBox(height: 40.0),
           _renderTitle(
@@ -247,18 +255,7 @@ class _ProfileEventsLists extends ConsumerWidget {
             ),
           ),
           eventsOfLike.isNotEmpty
-              ? _renderHorizontalList(events: eventsOfLike)
-              : _renderEmptyContainer(),
-          const SizedBox(height: 40.0),
-          _renderTitle(
-            title: '최근 본 이벤트',
-            rightButton: const SizedBox(
-              height: 1.0,
-              width: 1.0,
-            ),
-          ),
-          isSeeEvents.isNotEmpty
-              ? _renderHorizontalList(events: isSeeEvents.reversed.toList())
+              ? _renderHorizontalList(events: eventsOfLike, ref: ref)
               : _renderEmptyContainer(),
         ],
       ),
@@ -267,6 +264,7 @@ class _ProfileEventsLists extends ConsumerWidget {
 
   Widget _renderHorizontalList({
     required List<EventModel> events,
+    required WidgetRef ref,
   }) {
     return SizedBox(
       height: 200.0,
@@ -278,6 +276,8 @@ class _ProfileEventsLists extends ConsumerWidget {
 
           return InkWell(
             onTap: () {
+              ref.read(userProvider.notifier).addUserMeSeeList(id: event.id);
+
               context.pushNamed(
                 EventDetailScreen.routeName,
                 pathParameters: {'id': event.id},

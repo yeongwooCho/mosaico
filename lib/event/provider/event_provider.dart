@@ -3,6 +3,7 @@ import 'package:mosaico/event/model/event_detail_model.dart';
 import 'package:mosaico/event/model/event_model.dart';
 import 'package:mosaico/event/model/rating_model.dart';
 import 'package:mosaico/event/provider/rating_provider.dart';
+import 'package:mosaico/user/provider/user_provider.dart';
 
 // final eventsBySelectedFriendProvider = Provider<List<EventModel>>((ref) {
 //   final selectedFriend = ref.watch(selectedFriendProvider);
@@ -25,6 +26,17 @@ import 'package:mosaico/event/provider/rating_provider.dart';
 //
 //   return events.where((element) => ids.contains(element.id)).toList();
 // });
+
+final eventsOfSeeListProvider = Provider<List<EventModel>>((ref) {
+  final events = ref.watch(eventsProvider);
+  final user = ref.watch(userMeProvider);
+
+  final newList = user.seeList
+      .map<EventModel>((id) => events.firstWhere((e) => e.id == id))
+      .toList();
+
+  return newList.reversed.toList();
+});
 
 final eventsOfLikeProvider = Provider<List<EventModel>>((ref) {
   final events = ref.watch(eventsProvider);

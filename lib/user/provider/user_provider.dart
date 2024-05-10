@@ -13,8 +13,8 @@ final friendsProvider = Provider<List<UserModel>>((ref) {
 });
 
 final userMeProvider = Provider<UserModel>((ref) {
-  final userMe = ref.watch(userProvider)[0];
-  return userMe;
+  final users = ref.watch(userProvider);
+  return users[0];
 });
 
 final userProvider = StateNotifierProvider<UserStateNotifier, List<UserModel>>(
@@ -57,7 +57,8 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
     state = [
       ...state.map((e) {
         if (e.id == '0') {
-          return e.copyWith(seeList: [...e.seeList, id]);
+          final newList = e.seeList.where((element) => element != id);
+          return e.copyWith(seeList: [...newList, id]);
         }
         return e;
       })
