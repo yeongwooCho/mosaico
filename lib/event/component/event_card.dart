@@ -159,13 +159,10 @@ class _TagContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: tags
-          .map((e) => Padding(
-                padding: const EdgeInsets.only(right: 4.0),
-                child: renderTag(title: e),
-              ))
-          .toList(),
+    return Wrap(
+      spacing: 4.0,
+      runSpacing: 4.0,
+      children: tags.map((e) => renderTag(title: e)).toList(),
     );
   }
 
