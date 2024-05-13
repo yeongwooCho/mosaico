@@ -102,6 +102,7 @@ flutter:
     - asset/img/social_login/button/
     - asset/img/social_login/screen/
     - asset/img/event/
+    - asset/img/events/
     - asset/img/user/
     - asset/img/participation/
 
