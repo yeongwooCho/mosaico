@@ -69,10 +69,12 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
           renderDescription(
             title: '이벤트 내용',
             description: event.detail,
+            images: event.detailImages,
           ),
           renderDescription(
             title: '참여 조건',
             description: event.condition,
+            images: [],
           ),
           renderChart(data: event.graphData),
           SliverPadding(
@@ -107,6 +109,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
   SliverPadding renderDescription({
     required String title,
     required String description,
+    required List<String> images,
   }) {
     return SliverPadding(
       padding: const EdgeInsets.only(
@@ -127,6 +130,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
               description,
               style: MyTextStyle.descriptionRegular,
             ),
+            if (images.isNotEmpty) ...images.map((e) => Image.asset(e))
           ],
         ),
       ),
