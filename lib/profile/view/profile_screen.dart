@@ -267,7 +267,7 @@ class _ProfileEventsLists extends ConsumerWidget {
     required WidgetRef ref,
   }) {
     return SizedBox(
-      height: 200.0,
+      height: 220.0,
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
         scrollDirection: Axis.horizontal,

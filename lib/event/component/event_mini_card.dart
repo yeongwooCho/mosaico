@@ -53,6 +53,8 @@ class EventMiniCard extends ConsumerWidget {
               Image.asset(
                 imagePath,
                 fit: BoxFit.fill,
+                width: 180.0,
+                height: 140.0,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
