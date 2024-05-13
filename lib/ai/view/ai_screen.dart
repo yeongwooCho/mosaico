@@ -54,7 +54,7 @@ class _AiScreenState extends State<AiScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://eventme.site/'));
+      ..loadRequest(Uri.parse('https://www.mozaico.site/creator'));
   }
 
   @override
