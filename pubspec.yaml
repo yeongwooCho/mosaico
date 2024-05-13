@@ -103,6 +103,7 @@ flutter:
     - asset/img/social_login/screen/
     - asset/img/event/
     - asset/img/events/
+    - asset/img/events/details/
     - asset/img/user/
     - asset/img/participation/
 
