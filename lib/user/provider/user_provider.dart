@@ -79,7 +79,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
           '뷰티',
           '푸드',
         ],
-        seeList: ['1'],
+        seeList: ['3', '5', '11'],
       ),
       UserModel(
         id: '1',
@@ -89,7 +89,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/1.png',
         keywords: [],
-        seeList: ['2'],
+        seeList: ['3', '4', '0'],
       ),
       UserModel(
         id: '2',
@@ -109,7 +109,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/3.png',
         keywords: [],
-        seeList: ['3'],
+        seeList: ['5'],
       ),
       UserModel(
         id: '4',
@@ -119,7 +119,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/4.png',
         keywords: [],
-        seeList: ['4'],
+        seeList: ['6', '7'],
       ),
       UserModel(
         id: '5',
@@ -129,7 +129,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/5.png',
         keywords: [],
-        seeList: ['6'],
+        seeList: ['8', '9', '10'],
       ),
       UserModel(
         id: '6',
@@ -139,7 +139,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/6.png',
         keywords: [],
-        seeList: ['0', '1'],
+        seeList: ['3', '1'],
       ),
       UserModel(
         id: '7',
@@ -149,7 +149,7 @@ class UserStateNotifier extends StateNotifier<List<UserModel>> {
         phone: '01012341234',
         profileImage: 'asset/img/user/7.png',
         keywords: [],
-        seeList: ['2', '4',],
+        seeList: ['11'],
       ),
       UserModel(
         id: '8',

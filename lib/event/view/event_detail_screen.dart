@@ -126,11 +126,14 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
               style: MyTextStyle.bodyTitleMedium,
             ),
             const SizedBox(height: 8.0),
+            if (images.isNotEmpty) ...images.map((e) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Image.asset(e),
+            )),
             Text(
               description,
               style: MyTextStyle.descriptionRegular,
             ),
-            if (images.isNotEmpty) ...images.map((e) => Image.asset(e))
           ],
         ),
       ),
