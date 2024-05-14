@@ -50,7 +50,7 @@ class _EventRatingScreenState extends ConsumerState<EventRatingScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Text(
-                  '참여한 이벤트',
+                  '참여한 모자익',
                   style: MyTextStyle.bodyTitleMedium,
                 ),
               ),

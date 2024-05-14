@@ -72,7 +72,7 @@ class _FriendScreenState extends ConsumerState<FriendScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: Text(
-                '친구가 참여한 이벤트',
+                '친구가 참여한 모자익',
                 style: MyTextStyle.bodyTitleMedium,
               ),
             ),
@@ -94,7 +94,7 @@ class _FriendScreenState extends ConsumerState<FriendScreen> {
                       ),
                       child: const Center(
                         child: Text(
-                          '참여한 이벤트가 존재하지 않습니다.',
+                          '참여한 모자익이 존재하지 않습니다.',
                           style: MyTextStyle.descriptionRegular,
                         ),
                       ),

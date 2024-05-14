@@ -65,7 +65,7 @@ class _AiScreenState extends State<AiScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      appbar: const DefaultAppBar(title: 'AI 이벤트 제작'),
+      appbar: const DefaultAppBar(title: 'AI 모자익 제작'),
       child: isVisible
           ? WebViewWidget(controller: controller)
           : CustomLoadingScreen(),

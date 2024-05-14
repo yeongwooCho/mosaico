@@ -222,7 +222,7 @@ class _ProfileEventsLists extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _renderTitle(
-            title: '최근 본 이벤트',
+            title: '최근 본 모자익',
             rightButton: const SizedBox(
               height: 1.0,
               width: 1.0,
@@ -233,7 +233,7 @@ class _ProfileEventsLists extends ConsumerWidget {
               : _renderEmptyContainer(),
           const SizedBox(height: 40.0),
           _renderTitle(
-            title: '내가 지원한 이벤트',
+            title: '내가 지원한 모자익',
             rightButton: SeeMoreButton(
               title: '더보기',
               onTap: () {
@@ -330,7 +330,7 @@ class _ProfileEventsLists extends ConsumerWidget {
         ),
         child: const Center(
           child: Text(
-            '이벤트가 존재하지 않습니다.',
+            '모자익이 존재하지 않습니다.',
             style: MyTextStyle.descriptionRegular,
           ),
         ),

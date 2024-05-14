@@ -67,7 +67,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
         slivers: [
           renderEventCard(event: event),
           renderDescription(
-            title: '이벤트 내용',
+            title: '모자익 내용',
             description: event.detail,
             images: event.detailImages,
           ),
@@ -149,7 +149,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              '이벤트 참여인원 그래프',
+              '모자익 참여인원 그래프',
               style: MyTextStyle.bodyTitleMedium,
             ),
             const SizedBox(height: 8.0),
@@ -166,7 +166,7 @@ class _EventDetailScreenState extends ConsumerState<EventDetailScreen> {
               textColor: MyColor.text,
               axisColor: MyColor.text,
               sideTitle: '참여 인원',
-              bottomTitle: '이벤트 지속 시간',
+              bottomTitle: '모자익 지속 시간',
             ),
           ],
         ),

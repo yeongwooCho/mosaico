@@ -15,7 +15,7 @@ class EventOfParticipationScreen extends ConsumerWidget {
     final events = ref.watch(eventsOfParticipationProvider);
 
     return DefaultLayout(
-      appbar: const DefaultAppBar(title: '내가 지원한 이벤트'),
+      appbar: const DefaultAppBar(title: '내가 지원한 모자익'),
       child: EventMainVerticalList(events: events),
     );
   }
